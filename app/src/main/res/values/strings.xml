@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">adventurist</string>
+    <string name="todo">TODO</string>
+    <string name="let_us_discover_the_world">Let us discover the world</string>
+    <string name="places">Places</string>
+    <string name="hotels">Hotels</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_location">search Location...</string>
 </resources>
