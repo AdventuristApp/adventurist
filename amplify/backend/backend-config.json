@@ -1,4 +1,10 @@
 {
+  "analytics": {
+    "adventurist": {
+      "providerPlugin": "awscloudformation",
+      "service": "Pinpoint"
+    }
+  },
   "api": {
     "adventurist": {
       "dependsOn": [],
