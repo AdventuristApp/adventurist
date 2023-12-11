@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.adventurist.adventurist.PlanDetailsActivity;
 import com.adventurist.adventurist.R;
 import androidx.recyclerview.widget.RecyclerView;
 
