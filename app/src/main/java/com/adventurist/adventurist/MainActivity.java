@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                     });
         });
     }
-
     private void goToPlaneActivity() {
         Button planeButton = (Button) findViewById(R.id.planeButton);
         planeButton.setOnClickListener(v -> {
