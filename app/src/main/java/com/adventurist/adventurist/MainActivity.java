@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        goToPlaneActivity();
     }
 
     @Override
@@ -104,6 +106,14 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(this, "Log Out failed", Toast.LENGTH_LONG);
                         });
                     });
+        });
+    }
+
+    private void goToPlaneActivity() {
+        Button planeButton = (Button) findViewById(R.id.planeButton);
+        planeButton.setOnClickListener(v -> {
+            Intent goToPlaneIntent = new Intent(this, PlanActivity.class);
+            startActivity(goToPlaneIntent);
         });
     }
 }
