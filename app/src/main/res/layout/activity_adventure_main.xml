@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adventureMainActivity"
+    tools:ignore="MissingDefaultResource">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/newLayout"
+        android:layout_width="412dp"
+        android:layout_height="350dp"
+        android:background="@color/blue"
+        tools:context=".adventureMainActivity"
+        tools:ignore="MissingConstraints">
+        <fragment
+            android:id="@+id/nav_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigatin_view"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:navGraph="@navigation/nav_graph"
+            tools:ignore="FragmentTagUsage,NotSibling" />
+
+
+            <TextView
+                android:id="@+id/profileName"
+                android:layout_width="235dp"
+                android:layout_height="29dp"
+                android:text="NiceName"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.852"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                tools:fontFamily="cursive"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="250dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="60dp"
+                android:fontFamily="cursive"
+                android:text="Welcome,"
+                android:textColor="@android:color/white"
+                android:textSize="24dp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.56"
+                app:layout_constraintStart_toEndOf="@+id/profileImage"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+                tools:ignore="MissingConstraints,SpUsage" />
+
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="342dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arizonia"
+                android:text="@string/let_us_discover_the_world"
+                android:textColor="@android:color/white"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.042"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.709"
+                tools:ignore="SpUsage" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="100dp"
+                android:layout_height="56dp"
+                android:contentDescription="@string/todo"
+                app:srcCompat="@drawable/distribution"
+                tools:ignore="MissingConstraints,ImageContrastCheck"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="282dp"
+                android:layout_height="45dp"
+                android:fontFamily="cursive"
+                android:text="Adventurist"
+                android:textColor="@color/white"
+                android:textSize="35dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+                app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+                app:layout_constraintHorizontal_bias="0.875"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.578"
+                tools:ignore="SpUsage" />
+
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="111dp"
+                android:layout_height="79dp"
+                android:src="@drawable/profile"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.009"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+                app:layout_constraintVertical_bias="0.307" />
+
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="48dp"
+                android:layout_height="28dp"
+                app:layout_constraintBottom_toTopOf="@+id/profileImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.126"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+                app:layout_constraintVertical_bias="0.533"
+                app:srcCompat="@drawable/placeholder" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="180dp"
+                android:layout_height="29dp"
+                android:layout_marginEnd="132dp"
+                android:fontFamily="cursive"
+                android:text="Amman,Jordan "
+                android:textColor="#174EDA"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/profileImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+                app:layout_constraintVertical_bias="0.514" />
+
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="223dp"
+                android:layout_height="43dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="36dp"
+                android:autofillHints=""
+                android:background="@drawable/elements"
+                android:drawableEnd="@drawable/baseline_search_24"
+                android:ems="10"
+                android:hint="search Location..."
+                android:inputType="text"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.428"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13"
+                tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/editPlaces"-->
+    <!--        android:layout_width="45dp"-->
+    <!--        android:layout_height="45dp"-->
+    <!--        android:background="@drawable/baseline_place_24"-->
+    <!--        android:ems="10"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.825"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/newLayout"-->
+    <!--        app:layout_constraintVertical_bias="0.023"-->
+    <!--        tools:ignore="MissingConstraints,SpeakableTextPresentCheck,TouchTargetSizeCheck" />-->
+
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="42dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="308dp"
+        android:fontFamily="cursive"
+        android:text="Trips"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.143"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageTrips"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="42dp"
+        android:layout_height="22dp"
+        android:fontFamily="cursive"
+        android:text="@string/hotels"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageHotels"
+        app:layout_constraintVertical_bias="0.049" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="42dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="cursive"
+        android:text="@string/places"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.794"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GalleryImageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="163dp"
+        android:layout_height="171dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigatin_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/london_abbildung_700_64947944"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="166dp"
+        android:layout_height="173dp"
+
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigatin_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.865"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/berlin_symbol_brandenburg_gate_and_tower_germany_travel_destination_famous_landmark_tourism_concept_700_112912191" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigatin_view"
+        android:layout_width="410dp"
+        android:layout_height="65dp"
+        android:background="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.998"
+        app:menu="@menu/botton_nav" />
+
+    <ImageView
+        android:id="@+id/GalleryImageView"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newLayout"
+        app:layout_constraintVertical_bias="0.02"
+        app:srcCompat="@drawable/baseline_place_24" />
+
+    <ImageView
+        android:id="@+id/imageHotels"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newLayout"
+        app:srcCompat="@drawable/baseline_local_hotel_24" />
+
+    <ImageView
+        android:id="@+id/imageTrips"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newLayout"
+        app:layout_constraintVertical_bias="0.02"
+        app:srcCompat="@drawable/airplane_ticket" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
