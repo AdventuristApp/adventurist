@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <resources>
     <string name="app_name">adventurist</string>
     <string name="todo">TODO</string>
@@ -19,4 +20,30 @@
     <string name="unlock_the_mystery_input_the_secret_code_to_unveil_the_magic">Unlock the mystery! Input the secret code to unveil the magic.</string>
     <string name="code">code</string>
 
+=======
+<resources>
+    <string name="app_name">adventurist</string>
+    <string name="todo">TODO</string>
+    <string name="let_us_discover_the_world">Let us discover the world</string>
+    <string name="places">Places</string>
+    <string name="hotels">Hotels</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_location">search Location...</string>
+
+    <string name="adventurist">Adventurist</string>
+    <string name="welcome">Welcome</string>
+    <string name="please_login_with_your_information">Please login with your information</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="or_sign_up">Or Sign up</string>
+    <string name="sign_up">Sign up</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="unlock_the_mystery_input_the_secret_code_to_unveil_the_magic">Unlock the mystery! Input the secret code to unveil the magic.</string>
+    <string name="code">code</string>
+
+>>>>>>> 6ff3edb (m)
 </resources>
