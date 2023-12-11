@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setUpSignInAndSignOutButtons();
-        goToPlaneActivity();
 
 
 
@@ -107,15 +106,4 @@ public class MainActivity extends AppCompatActivity {
                     });
         });
     }
-
-    private void goToPlaneActivity() {
-        Button planeButton = (Button) findViewById(R.id.planeButton);
-        planeButton.setOnClickListener(v -> {
-            Intent goToPlaneIntent = new Intent(this, PlanActivity.class);
-            startActivity(goToPlaneIntent);
-        });
-    }
-
 }
-
-
