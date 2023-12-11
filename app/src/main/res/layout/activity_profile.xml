@@ -113,7 +113,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ImagePlaces"
+        app:layout_constraintTop_toBottomOf="@+id/GalleryImageView"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -131,7 +131,7 @@
         app:layout_constraintVertical_bias="0.034" />
 
     <ImageView
-        android:id="@+id/ImagePlaces"
+        android:id="@+id/GalleryImageView"
         android:layout_width="135dp"
         android:layout_height="119dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -176,7 +176,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.777"
-        app:srcCompat="@drawable/travel" />
+        app:srcCompat="@drawable/travels" />
 
     <Button
         android:id="@+id/EditProfile"

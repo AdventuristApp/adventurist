@@ -8,6 +8,7 @@
     tools:ignore="MissingDefaultResource">
 
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/newLayout"
         android:layout_width="412dp"
@@ -15,7 +16,6 @@
         android:background="@color/blue"
         tools:context=".adventureMainActivity"
         tools:ignore="MissingConstraints">
-
         <fragment
             android:id="@+id/nav_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -31,151 +31,154 @@
             app:navGraph="@navigation/nav_graph"
             tools:ignore="FragmentTagUsage,NotSibling" />
 
-        <TextView
-            android:id="@+id/profileName"
-            android:layout_width="235dp"
-            android:layout_height="29dp"
-            android:text="NiceName"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.852"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8"
-            tools:fontFamily="cursive"
-            tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="250dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="60dp"
-            android:fontFamily="cursive"
-            android:text="Welcome,"
-            android:textColor="@android:color/white"
-            android:textSize="24dp"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.56"
-            app:layout_constraintStart_toEndOf="@+id/profileImage"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-            tools:ignore="MissingConstraints,SpUsage" />
+            <TextView
+                android:id="@+id/profileName"
+                android:layout_width="235dp"
+                android:layout_height="29dp"
+                android:text="NiceName"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.852"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                tools:fontFamily="cursive"
+                tools:ignore="HardcodedText" />
 
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="342dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/arizonia"
-            android:text="@string/let_us_discover_the_world"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.042"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.709"
-            tools:ignore="SpUsage" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/blue"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            tools:ignore="MissingConstraints" />
-
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="100dp"
-            android:layout_height="56dp"
-            android:contentDescription="@string/todo"
-            app:srcCompat="@drawable/distribution"
-            tools:ignore="MissingConstraints,ImageContrastCheck"
-            tools:src="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="282dp"
-            android:layout_height="45dp"
-            android:fontFamily="cursive"
-            android:text="Adventurist"
-            android:textColor="@color/white"
-            android:textSize="35dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-            app:layout_constraintEnd_toEndOf="@+id/toolbar2"
-            app:layout_constraintHorizontal_bias="0.875"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.578"
-            tools:ignore="SpUsage" />
-
-        <ImageView
-            android:id="@+id/profileImage"
-            android:layout_width="111dp"
-            android:layout_height="79dp"
-            android:src="@drawable/profile"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.009"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.307" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="250dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="60dp"
+                android:fontFamily="cursive"
+                android:text="Welcome,"
+                android:textColor="@android:color/white"
+                android:textSize="24dp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.56"
+                app:layout_constraintStart_toEndOf="@+id/profileImage"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+                tools:ignore="MissingConstraints,SpUsage" />
 
 
-        <ImageView
-            android:id="@+id/imageView15"
-            android:layout_width="48dp"
-            android:layout_height="28dp"
-            app:layout_constraintBottom_toTopOf="@+id/profileImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.126"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.533"
-            app:srcCompat="@drawable/placeholder" />
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="342dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arizonia"
+                android:text="@string/let_us_discover_the_world"
+                android:textColor="@android:color/white"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.042"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.709"
+                tools:ignore="SpUsage" />
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="180dp"
-            android:layout_height="29dp"
-            android:layout_marginEnd="132dp"
-            android:fontFamily="cursive"
-            android:text="Amman,Jordan "
-            android:textColor="#174EDA"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/profileImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.514" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                tools:ignore="MissingConstraints" />
 
-        <EditText
-            android:id="@+id/editTextText"
-            android:layout_width="223dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="36dp"
-            android:autofillHints=""
-            android:background="@drawable/elements"
-            android:drawableEnd="@drawable/baseline_search_24"
-            android:ems="10"
-            android:hint="search Location..."
-            android:inputType="text"
-            android:textSize="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.428"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13"
-            tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="100dp"
+                android:layout_height="56dp"
+                android:contentDescription="@string/todo"
+                app:srcCompat="@drawable/distribution"
+                tools:ignore="MissingConstraints,ImageContrastCheck"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="282dp"
+                android:layout_height="45dp"
+                android:fontFamily="cursive"
+                android:text="Adventurist"
+                android:textColor="@color/white"
+                android:textSize="35dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+                app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+                app:layout_constraintHorizontal_bias="0.875"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.578"
+                tools:ignore="SpUsage" />
+
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="111dp"
+                android:layout_height="79dp"
+                android:src="@drawable/profile"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.009"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+                app:layout_constraintVertical_bias="0.307" />
+
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="48dp"
+                android:layout_height="28dp"
+                app:layout_constraintBottom_toTopOf="@+id/profileImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.126"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+                app:layout_constraintVertical_bias="0.533"
+                app:srcCompat="@drawable/placeholder" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="180dp"
+                android:layout_height="29dp"
+                android:layout_marginEnd="132dp"
+                android:fontFamily="cursive"
+                android:text="Amman,Jordan "
+                android:textColor="#174EDA"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/profileImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+                app:layout_constraintVertical_bias="0.514" />
+
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="223dp"
+                android:layout_height="43dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="36dp"
+                android:autofillHints=""
+                android:background="@drawable/elements"
+                android:drawableEnd="@drawable/baseline_search_24"
+                android:ems="10"
+                android:hint="search Location..."
+                android:inputType="text"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.428"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13"
+                tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
     <!--    <EditText-->
@@ -234,7 +237,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.794"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ImagePlaces"
+        app:layout_constraintTop_toBottomOf="@+id/GalleryImageView"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
@@ -275,7 +278,7 @@
         app:menu="@menu/botton_nav" />
 
     <ImageView
-        android:id="@+id/ImagePlaces"
+        android:id="@+id/GalleryImageView"
         android:layout_width="45dp"
         android:layout_height="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -308,6 +311,7 @@
         app:layout_constraintTop_toBottomOf="@+id/newLayout"
         app:layout_constraintVertical_bias="0.02"
         app:srcCompat="@drawable/airplane_ticket" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

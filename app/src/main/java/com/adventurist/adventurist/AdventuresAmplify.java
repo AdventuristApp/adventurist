@@ -23,6 +23,7 @@ public class AdventuresAmplify extends Application {
             Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(this));
             Amplify.addPlugin(new AWSPredictionsPlugin());
             Amplify.configure(getApplicationContext());
+
             Log.i(TAG, "Initialized Amplify");
         } catch (AmplifyException ae) {
             Log.e(TAG, "Error initializing Amplify" + ae.getMessage(), ae);

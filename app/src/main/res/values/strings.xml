@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">adventurist</string>
-<<<<<<< HEAD
     <string name="todo">TODO</string>
     <string name="let_us_discover_the_world">Let us discover the world</string>
     <string name="places">Places</string>
@@ -8,7 +7,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_location">search Location...</string>
-=======
+
     <string name="adventurist">Adventurist</string>
     <string name="welcome">Welcome</string>
     <string name="please_login_with_your_information">Please login with your information</string>
@@ -17,5 +16,5 @@
     <string name="login">Login</string>
     <string name="or_sign_up">Or Sign up</string>
     <string name="sign_up">Sign up</string>
->>>>>>> main
+
 </resources>
