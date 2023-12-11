@@ -2,11 +2,13 @@ package com.adventurist.adventurist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.amplifyframework.auth.AuthUserAttributeKey;
@@ -25,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         setUpSignUpButton();
+        setUpAnimation();
     }
 
     public void setUpSignUpButton (){
@@ -54,5 +57,27 @@ public class SignUpActivity extends AppCompatActivity {
                     }
             );
         });
+    }
+    private void setUpAnimation(){
+        RelativeLayout relativeLayout = findViewById(R.id.wave);
+        ObjectAnimator animationX = ObjectAnimator.ofFloat(
+                relativeLayout,
+                "translationX",
+                0f, 100f
+        );
+
+        ObjectAnimator animationY = ObjectAnimator.ofFloat(
+                relativeLayout,
+                "translationY",
+                0f, -200f
+        );
+        animationY.setDuration(1000);
+        animationX.setDuration(1000);
+        animationX.setRepeatCount(ObjectAnimator.INFINITE);
+        animationY.setRepeatCount(ObjectAnimator.INFINITE);
+        animationX.setRepeatMode(ObjectAnimator.REVERSE);
+        animationY.setRepeatMode(ObjectAnimator.REVERSE);
+        animationX.start();
+        animationY.start();
     }
 }
