@@ -13,8 +13,7 @@
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDate": "2024-02-09T10:16:59.504Z",
-
+              "apiKeyExpirationDate": "2024-02-08T08:34:07.500Z",
               "apiKeyExpirationDays": 60,
               "description": "test"
             },
@@ -52,13 +51,6 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
-    }
-  },
-  "storage": {
-    "adventurist": {
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
-      "service": "S3"
     }
   }
 }
