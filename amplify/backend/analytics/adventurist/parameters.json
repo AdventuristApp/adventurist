@@ -1,0 +1,21 @@
+{
+    "appName": "adventurist",
+    "roleName": "pinpointLambdaRole9b5e425d",
+    "cloudformationPolicyName": "cloudformationPolicy9b5e425d",
+    "cloudWatchPolicyName": "cloudWatchPolicy9b5e425d",
+    "pinpointPolicyName": "pinpointPolicy9b5e425d",
+    "authPolicyName": "pinpoint_amplify_9b5e425d",
+    "unauthPolicyName": "pinpoint_amplify_9b5e425d",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

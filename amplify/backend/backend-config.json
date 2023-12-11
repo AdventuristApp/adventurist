@@ -1,4 +1,10 @@
 {
+  "analytics": {
+    "adventurist": {
+      "providerPlugin": "awscloudformation",
+      "service": "Pinpoint"
+    }
+  },
   "api": {
     "adventurist": {
       "dependsOn": [],
@@ -7,7 +13,7 @@
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDate": "2024-02-07T12:52:30.240Z",
+              "apiKeyExpirationDate": "2024-02-09T10:16:59.504Z",
               "apiKeyExpirationDays": 60,
               "description": "test"
             },
@@ -45,6 +51,13 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "storage": {
+    "adventurist": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     }
   }
 }

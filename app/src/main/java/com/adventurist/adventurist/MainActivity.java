@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setUpSignInAndSignOutButtons();
+        goToPlaneActivity();
     }
 
     @Override
@@ -91,4 +92,13 @@ public class MainActivity extends AppCompatActivity {
                     });
         });
     }
+
+    private void goToPlaneActivity() {
+        Button planeButton = (Button) findViewById(R.id.planeButton);
+        planeButton.setOnClickListener(v -> {
+            Intent goToPlaneIntent = new Intent(this, PlanActivity.class);
+            startActivity(goToPlaneIntent);
+        });
+    }
+
 }

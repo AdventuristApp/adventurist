@@ -8,4 +8,6 @@
     <string name="login">Login</string>
     <string name="or_sign_up">Or Sign up</string>
     <string name="sign_up">Sign up</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
