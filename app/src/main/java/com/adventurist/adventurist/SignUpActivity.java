@@ -20,6 +20,7 @@ public class SignUpActivity extends AppCompatActivity {
     public static final String TAG = "SignUpActivity";
 
     public static final String SIGN_UP_EMAIL_TAG = "Sign_Up_Email_Tag";
+    public static final String SIGN_UP_Name_TAG = "Sign_Up_Name_Tag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,9 @@ public class SignUpActivity extends AppCompatActivity {
                         Log.i(TAG, "Sign Up Succeeded :D" + success.toString());
                         Intent goToVerifyIntent = new Intent(this, VerifyAccActivity.class);
                         goToVerifyIntent.putExtra(SIGN_UP_EMAIL_TAG, email);
-                        startActivity(goToVerifyIntent);
+                        Intent goTomainAdventure = new Intent(this, adventureMainActivity.class);
+                        goToVerifyIntent.putExtra(SIGN_UP_Name_TAG, nickName);
+                        startActivity(goTomainAdventure);
                     },
                     fail -> {
                         Log.i(TAG, "Sign Up fail with this email: " + email + "with a message" + fail.toString());

@@ -19,11 +19,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Images;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -31,7 +32,6 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class GalleryActivity extends AppCompatActivity {
     public static final String TAG = "Galleryactivity";
@@ -40,6 +40,10 @@ public class GalleryActivity extends AppCompatActivity {
     private RecyclerView imageRecyclerView;
     private ImageAdapter imageAdapter;
     private ArrayList<Uri> imageUris;
+    private List<Images> ImageList = new ArrayList<>();
+
+    public static final String Main_ID_TAG = "task ID";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +53,7 @@ public class GalleryActivity extends AppCompatActivity {
         imageUris = new ArrayList<>();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         imageRecyclerView.setLayoutManager(layoutManager);
-        imageAdapter = new ImageAdapter(imageUris);
+        imageAdapter = new ImageAdapter(imageUris, this);
         imageRecyclerView.setAdapter(imageAdapter);
 
         imageAdapter.OnItemClickListner(new ImageAdapter.OnItemClickListener() {
@@ -57,6 +61,7 @@ public class GalleryActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 imageUris.remove(position);
                 imageAdapter.notifyItemRemoved(position);
+
             }
         });
 
@@ -65,7 +70,42 @@ public class GalleryActivity extends AppCompatActivity {
 
         setUpAddImageButton();
 
+
+
+
+
     }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+
+    protected void onResume() {
+        super.onResume();
+
+        Amplify.API.query(
+                ModelQuery.list(Images.class),
+                success -> {
+                    Log.i(TAG, "Read images successfully");
+                    ImageList.clear();
+                    if (success.getData() != null) {
+                        for (Images databaseProduct : success.getData()) {
+                            ImageList.add(databaseProduct);
+                            Log.d(TAG, "Image ID: " + databaseProduct.getId());
+                        }
+                        runOnUiThread(() -> {
+                            imageAdapter.setImages(ImageList);
+                            imageAdapter.notifyDataSetChanged();
+                        });
+                    }
+                },
+                failure -> Log.e(TAG, "Failed to read images", failure)
+        );
+    }
+
+
+
+
 
 
 
@@ -179,7 +219,7 @@ public class GalleryActivity extends AppCompatActivity {
                     resizedInputStream,
                     success -> {
                         Log.i(TAG, "Succeeded in getting file uploaded to S3! Key is: " + success.getKey());
-
+                        saveS3KeyToDynamoDB(success.getKey());
                         addImageUri(pickedImageFileUri);
                     },
                     failure -> {
@@ -190,6 +230,41 @@ public class GalleryActivity extends AppCompatActivity {
             Log.e(TAG, "Error resizing and uploading image: " + e.getMessage(), e);
         }
     }
+
+    private void saveS3KeyToDynamoDB(String s3Key) {
+        // Create a model instance representing your data
+        Images imageModel = Images.builder()
+                .taskImageS3Key(s3Key)
+                // Set other fields if needed
+                .build();
+
+        // Perform the create mutation to add a new item
+        Amplify.API.mutate(
+                ModelMutation.create(imageModel),
+                response -> {
+                    Images createdImage = response.getData();
+                    if (createdImage != null) {
+                        String createdImageId = createdImage.getId();
+                        Log.i(TAG, "Image created successfully with ID: " + createdImageId);
+                    } else {
+                        Log.e(TAG, "Error creating Image: Response data is null");
+                    }
+                },
+                error -> Log.e(TAG, "Error creating Image: " + error)
+        );
+    }
+
+
+//        // Save to DynamoDB
+//        Amplify.API.mutate(
+//                imageModel,
+//                ModelQuery.get(Images.class, Main_ID_TAG),
+//                response -> Log.i(TAG, "Saved to DynamoDB: " + response.getData().getId()),
+//                error -> Log.e(TAG, "Error saving to DynamoDB", error)
+//        );
+
+
+
     private void addImageUri(Uri imageUri) {
         imageUris.add(imageUri);
         imageAdapter.notifyDataSetChanged();}

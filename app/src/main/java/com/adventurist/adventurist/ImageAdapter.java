@@ -1,5 +1,10 @@
 package com.adventurist.adventurist;
 
+import static com.adventurist.adventurist.GalleryActivity.Main_ID_TAG;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +15,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.adventurist.adventurist.R;
+import com.amplifyframework.datastore.generated.model.Images;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
+    Context callingActivity;
 
     private ArrayList<Uri> imageUris;
+    private List<Images> imagesList;
     private OnItemClickListener listener;
 
-    public ImageAdapter(ArrayList<Uri> imageUris) {
+    public ImageAdapter(ArrayList<Uri> imageUris, Context callingActivity) {
         this.imageUris = imageUris;
+        this.callingActivity=callingActivity;
     }
 
     public interface OnItemClickListener{
@@ -31,7 +41,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         listener=clickListener;
 
     }
-
+    @SuppressLint("NotifyDataSetChanged")
+    public void setImages(List<Images> images) {
+        this.imagesList = images;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,15 +57,23 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         Uri imageUri = imageUris.get(position);
-        // Assuming you have an ImageView in your item layout, set the image to it
         holder.imageView.setImageURI(imageUri);
 
+        View listViewHolder = holder.itemView;
+        // Make it clickable
+        listViewHolder.setOnClickListener(view -> {
+            Intent goToshowIntent = new Intent(callingActivity, showActivity.class);
+            goToshowIntent.putExtra(Main_ID_TAG, Images.ID.toString());
+
+            // Pass the URI of the clicked image to the new activity
+            goToshowIntent.putExtra("imageUri", imageUri.toString());
+
+            callingActivity.startActivity(goToshowIntent);
 
 
-
-
-    }
-
+    });}
+    //Images IMAGE=imagesList.get(position);
+//holder.imageView.setImageBitmap();
     @Override
     public int getItemCount() {
         return imageUris.size();

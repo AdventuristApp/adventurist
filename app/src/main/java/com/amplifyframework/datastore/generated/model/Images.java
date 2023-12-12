@@ -54,11 +54,11 @@ public final class Images implements Model {
       return updatedAt;
   }
   
-  private Images(String id, String taskImageS3Key) {
+  public Images(String id, String taskImageS3Key) {
     this.id = id;
     this.taskImageS3Key = taskImageS3Key;
   }
-  
+
   @Override
    public boolean equals(Object obj) {
       if (this == obj) {
@@ -96,7 +96,7 @@ public final class Images implements Model {
       .append("}")
       .toString();
   }
-  
+
   public static TaskImageS3KeyStep builder() {
       return new Builder();
   }
