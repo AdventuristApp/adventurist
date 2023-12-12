@@ -55,7 +55,7 @@ public class adventureMainActivity extends AppCompatActivity {
     }
 
 
-    
+
     public void setUpButtonsAndclickableImage(){
 
     ImageView Trips = findViewById(R.id.imageTrips);

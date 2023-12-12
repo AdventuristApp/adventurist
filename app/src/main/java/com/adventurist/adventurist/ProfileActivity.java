@@ -14,18 +14,18 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-//        setUpClickableImage();
+        setUpClickableImage();
     }
 
-//    public  void setUpClickableImage(){
-//        ImageView Gallery = findViewById(R.id.GalleryImageView);
-//        Gallery.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent1 = new Intent(ProfileActivity.this, GalleryActivity.class);
-//                startActivity(intent1);
-//            }
-//        });
+    public  void setUpClickableImage(){
+        ImageView Gallery = findViewById(R.id.GalleryImageView);
+        Gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(ProfileActivity.this, GalleryActivity.class);
+                startActivity(intent1);
+            }
+        });
 
-//    }
+    }
 }

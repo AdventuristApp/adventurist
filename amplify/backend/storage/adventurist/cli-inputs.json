@@ -1,0 +1,18 @@
+{
+  "resourceName": "adventurist",
+  "policyUUID": "09bce050",
+  "bucketName": "adventuristd3e1d80b7ad541f0941fab07c73f48d1",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

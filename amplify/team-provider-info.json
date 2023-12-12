@@ -17,6 +17,12 @@
       },
       "api": {
         "adventurist": {}
+      },
+      "analytics": {
+        "adventurist": {}
+      },
+      "storage": {
+        "adventurist": {}
       }
     }
   }
