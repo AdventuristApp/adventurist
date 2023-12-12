@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         authUser = Amplify.Auth.getCurrentUser();
+
         String email= "";
         if (authUser == null){
             Button signInButton = (Button) findViewById(R.id.signInMainActivity);

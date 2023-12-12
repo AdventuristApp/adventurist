@@ -20,6 +20,12 @@
       },
       "storage": {
         "adventurist": {}
+      },
+      "analytics": {
+        "adventurist": {}
+      },
+      "geo": {
+        "adventureMap": {}
       }
     }
   }
