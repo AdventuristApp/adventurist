@@ -25,6 +25,11 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "geo": {
+    "adventureLocationSearch": {
+      "Arn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "adventureMap": {
       "Arn": "string",
       "Name": "string",

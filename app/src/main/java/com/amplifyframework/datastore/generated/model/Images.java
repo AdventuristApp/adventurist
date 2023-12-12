@@ -180,5 +180,4 @@ public final class Images implements Model {
       return (CopyOfBuilder) super.taskImageS3Key(taskImageS3Key);
     }
   }
-
 }

@@ -19,4 +19,5 @@ type Plan @model @auth(rules: [{allow: public}]){
   numberOfDays: Int!
   destination: String!
   budget: Float!
+  userId: ID!
 }

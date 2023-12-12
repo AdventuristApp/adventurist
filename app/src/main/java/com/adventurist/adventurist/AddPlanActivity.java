@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Plan;
 import com.google.android.material.snackbar.Snackbar;
@@ -33,18 +34,27 @@ public class AddPlanActivity extends AppCompatActivity {
             String destination = ((EditText) findViewById(R.id.addDestination)).getText().toString();
             double budget = Double.parseDouble(((EditText) findViewById(R.id.addBudget)).getText().toString());
 
-            Plan newPlan = Plan.builder()
-                    .planName(planName)
-                    .numberOfDays(numberOfDays)
-                    .destination(destination)
-                    .budget(budget)
-                    .build();
+            AuthUser authUser = Amplify.Auth.getCurrentUser();
+            if (authUser != null){
+                String userId = authUser.getUserId();
 
-            Amplify.API.mutate(
-                    ModelMutation.create(newPlan),
-                    successRes -> Log.i(TAG, "Creating a plan successfully"),
-                    failureRes -> Log.e(TAG, "failed with this res" + failureRes)
-            );
+                Plan newPlan = Plan.builder()
+                        .planName(planName)
+                        .numberOfDays(numberOfDays)
+                        .destination(destination)
+                        .budget(budget)
+                        .userId(userId)
+                        .build();
+
+                Amplify.API.mutate(
+                        ModelMutation.create(newPlan),
+                        successRes -> Log.i(TAG, "Creating a plan successfully" + newPlan),
+                        failureRes -> Log.e(TAG, "Failed with this res: " + failureRes)
+                );
+
+                snackbar.show();
+
+            } else Log.e(TAG, "User is not authenticated");
 
             snackbar.show();
         });

@@ -54,6 +54,23 @@
     }
   },
   "geo": {
+    "adventureLocationSearch": {
+      "accessType": "AuthorizedAndGuestUsers",
+      "dataProvider": "HERE",
+      "dataSourceIntendedUse": "SingleUse",
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "adventurist85a872e8"
+        }
+      ],
+      "isDefault": true,
+      "providerPlugin": "awscloudformation",
+      "service": "PlaceIndex"
+    },
     "adventureMap": {
       "accessType": "AuthorizedAndGuestUsers",
       "dependsOn": [

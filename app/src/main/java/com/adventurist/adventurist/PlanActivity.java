@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.adventurist.adventurist.adapter.PlanListRecyclerViewAdapter;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Plan;
 
@@ -57,21 +58,28 @@ public class PlanActivity extends AppCompatActivity {
 
 
     private void readPlans() {
+        AuthUser authUser = Amplify.Auth.getCurrentUser();
 
-        Amplify.API.query(
-                ModelQuery.list(Plan.class),
-                success -> {
-                    Log.i(TAG, "Read plans successfully");
-                    Log.i(TAG, "reading" + plans.toString());
-                    plans.clear();
-                    for (Plan planList : success.getData()){
-                        plans.add(planList);
-                    }
-                    runOnUiThread(()->{
-                        adapter.notifyDataSetChanged();
-                    });
-                },
-                fail -> Log.i(TAG, "Did not read Plan")
-        );
+        if (authUser != null){
+            String userId = authUser.getUserId();
+
+
+            Amplify.API.query(
+                    ModelQuery.list(Plan.class, Plan.USER_ID.eq(userId)),
+                    success -> {
+                        Log.i(TAG, "Read plans successfully");
+                        Log.i(TAG, "reading" + plans.toString());
+                        plans.clear();
+                        for (Plan planList : success.getData()){
+                            plans.add(planList);
+                        }
+                        runOnUiThread(()->{
+                            adapter.notifyDataSetChanged();
+                        });
+                    },
+                    fail -> Log.i(TAG, "Did not read Plan")
+            );
+        }
+
     }
 }
