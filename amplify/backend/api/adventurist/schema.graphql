@@ -8,10 +8,9 @@ type Todo @model {
   description: String
 }
 
-type Plan @model @auth(rules: [{allow: public}]){
-    id: ID!
-    planName: String!
-    numberOfDays: Int!
-    destination: String!
-    budget: Float!
+type Images @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  taskImageS3Key: String!
+
+
 }

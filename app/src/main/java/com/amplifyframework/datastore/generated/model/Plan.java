@@ -30,11 +30,13 @@ public final class Plan implements Model {
   public static final QueryField NUMBER_OF_DAYS = field("Plan", "numberOfDays");
   public static final QueryField DESTINATION = field("Plan", "destination");
   public static final QueryField BUDGET = field("Plan", "budget");
+  public static final QueryField USER_ID = field("Plan", "userId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String planName;
   private final @ModelField(targetType="Int", isRequired = true) Integer numberOfDays;
   private final @ModelField(targetType="String", isRequired = true) String destination;
   private final @ModelField(targetType="Float", isRequired = true) Double budget;
+  private final @ModelField(targetType="ID", isRequired = true) String userId;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   /** @deprecated This API is internal to Amplify and should not be used. */
@@ -63,6 +65,10 @@ public final class Plan implements Model {
       return budget;
   }
   
+  public String getUserId() {
+      return userId;
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -71,12 +77,13 @@ public final class Plan implements Model {
       return updatedAt;
   }
   
-  private Plan(String id, String planName, Integer numberOfDays, String destination, Double budget) {
+  private Plan(String id, String planName, Integer numberOfDays, String destination, Double budget, String userId) {
     this.id = id;
     this.planName = planName;
     this.numberOfDays = numberOfDays;
     this.destination = destination;
     this.budget = budget;
+    this.userId = userId;
   }
   
   @Override
@@ -92,6 +99,7 @@ public final class Plan implements Model {
               ObjectsCompat.equals(getNumberOfDays(), plan.getNumberOfDays()) &&
               ObjectsCompat.equals(getDestination(), plan.getDestination()) &&
               ObjectsCompat.equals(getBudget(), plan.getBudget()) &&
+              ObjectsCompat.equals(getUserId(), plan.getUserId()) &&
               ObjectsCompat.equals(getCreatedAt(), plan.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), plan.getUpdatedAt());
       }
@@ -105,6 +113,7 @@ public final class Plan implements Model {
       .append(getNumberOfDays())
       .append(getDestination())
       .append(getBudget())
+      .append(getUserId())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -120,6 +129,7 @@ public final class Plan implements Model {
       .append("numberOfDays=" + String.valueOf(getNumberOfDays()) + ", ")
       .append("destination=" + String.valueOf(getDestination()) + ", ")
       .append("budget=" + String.valueOf(getBudget()) + ", ")
+      .append("userId=" + String.valueOf(getUserId()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -144,6 +154,7 @@ public final class Plan implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -153,7 +164,8 @@ public final class Plan implements Model {
       planName,
       numberOfDays,
       destination,
-      budget);
+      budget,
+      userId);
   }
   public interface PlanNameStep {
     NumberOfDaysStep planName(String planName);
@@ -171,7 +183,12 @@ public final class Plan implements Model {
   
 
   public interface BudgetStep {
-    BuildStep budget(Double budget);
+    UserIdStep budget(Double budget);
+  }
+  
+
+  public interface UserIdStep {
+    BuildStep userId(String userId);
   }
   
 
@@ -181,22 +198,24 @@ public final class Plan implements Model {
   }
   
 
-  public static class Builder implements PlanNameStep, NumberOfDaysStep, DestinationStep, BudgetStep, BuildStep {
+  public static class Builder implements PlanNameStep, NumberOfDaysStep, DestinationStep, BudgetStep, UserIdStep, BuildStep {
     private String id;
     private String planName;
     private Integer numberOfDays;
     private String destination;
     private Double budget;
+    private String userId;
     public Builder() {
       
     }
     
-    private Builder(String id, String planName, Integer numberOfDays, String destination, Double budget) {
+    private Builder(String id, String planName, Integer numberOfDays, String destination, Double budget, String userId) {
       this.id = id;
       this.planName = planName;
       this.numberOfDays = numberOfDays;
       this.destination = destination;
       this.budget = budget;
+      this.userId = userId;
     }
     
     @Override
@@ -208,7 +227,8 @@ public final class Plan implements Model {
           planName,
           numberOfDays,
           destination,
-          budget);
+          budget,
+          userId);
     }
     
     @Override
@@ -233,9 +253,16 @@ public final class Plan implements Model {
     }
     
     @Override
-     public BuildStep budget(Double budget) {
+     public UserIdStep budget(Double budget) {
         Objects.requireNonNull(budget);
         this.budget = budget;
+        return this;
+    }
+    
+    @Override
+     public BuildStep userId(String userId) {
+        Objects.requireNonNull(userId);
+        this.userId = userId;
         return this;
     }
     
@@ -251,12 +278,13 @@ public final class Plan implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String planName, Integer numberOfDays, String destination, Double budget) {
-      super(id, planName, numberOfDays, destination, budget);
+    private CopyOfBuilder(String id, String planName, Integer numberOfDays, String destination, Double budget, String userId) {
+      super(id, planName, numberOfDays, destination, budget, userId);
       Objects.requireNonNull(planName);
       Objects.requireNonNull(numberOfDays);
       Objects.requireNonNull(destination);
       Objects.requireNonNull(budget);
+      Objects.requireNonNull(userId);
     }
     
     @Override
@@ -278,6 +306,10 @@ public final class Plan implements Model {
      public CopyOfBuilder budget(Double budget) {
       return (CopyOfBuilder) super.budget(budget);
     }
+    
+    @Override
+     public CopyOfBuilder userId(String userId) {
+      return (CopyOfBuilder) super.userId(userId);
+    }
   }
-
 }
