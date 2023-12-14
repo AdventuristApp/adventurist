@@ -1,6 +1,7 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
+import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,7 +22,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Plan type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Plans", authRules = {
+@ModelConfig(pluralName = "Plans", type = Model.Type.USER, version = 1, authRules = {
   @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 public final class Plan implements Model {
@@ -312,4 +313,13 @@ public final class Plan implements Model {
       return (CopyOfBuilder) super.userId(userId);
     }
   }
+  
+
+  public static class PlanIdentifier extends ModelIdentifier<Plan> {
+    private static final long serialVersionUID = 1L;
+    public PlanIdentifier(String id) {
+      super(id);
+    }
+  }
+  
 }
