@@ -24,7 +24,6 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolName": "string"
     }
   },
-
   "geo": {
     "adventureLocationSearch": {
       "Arn": "string",
@@ -38,7 +37,6 @@ export type AmplifyDependentResourcesAttributes = {
       "Style": "string"
     }
   },
-
   "storage": {
     "adventurist": {
       "BucketName": "string",
