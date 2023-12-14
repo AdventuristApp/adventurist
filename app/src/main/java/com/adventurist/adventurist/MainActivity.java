@@ -48,23 +48,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
- setUpSignInAndSignOutButtons();
-
-        String emptyFilename= "emptyTestFileName";
+        setUpSignInAndSignOutButtons();
+        String emptyFilename = "emptyTestFileName";
         File emptyFile = new File(getApplicationContext().getFilesDir(), emptyFilename);
-
         try {
-            //createbufferWriter
-            BufferedWriter emptyFileBufferedWriter= new BufferedWriter(new FileWriter(emptyFile));
-
+            BufferedWriter emptyFileBufferedWriter = new BufferedWriter(new FileWriter(emptyFile));
             emptyFileBufferedWriter.append("Some text here from ghofran\nAnother lib from ghofran");
-//to make sure every thing is save use "close"
             emptyFileBufferedWriter.close();
-        }catch (IOException ioe){
-            Log.i(TAG, "could not write locally with filename: "+ emptyFilename);
+        } catch (IOException ioe) {
+            Log.i(TAG, "could not write locally with filename: " + emptyFilename);
         }
-
         String emptyFileS3Key = "someFileOnS3.txt";
         Amplify.Storage.uploadFile(
                 emptyFileS3Key,
@@ -95,40 +88,35 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getweather(View v){
-        Retrofit retrofit=new Retrofit.Builder()
+    public void getweather(View v) {
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.openweathermap.org/data/2.5/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        weatherapi myapi=retrofit.create(weatherapi.class);
-        Call<weather> examplecall=myapi.getweather(et.getText().toString().trim(),apikey);
+        weatherapi myapi = retrofit.create(weatherapi.class);
+        Call<weather> examplecall = myapi.getweather(et.getText().toString().trim(), apikey);
         examplecall.enqueue(new Callback<weather>() {
             @Override
             public void onResponse(Call<weather> call, Response<weather> response) {
-                if(response.code()==404){
-                    Toast.makeText(MainActivity.this,"Please Enter a valid City",Toast.LENGTH_LONG).show();
-                }
-                else if(!(response.isSuccessful())){
-                    Toast.makeText(MainActivity.this,response.code()+" ",Toast.LENGTH_LONG).show();
+                if (response.code() == 404) {
+                    Toast.makeText(MainActivity.this, "Please Enter a valid City", Toast.LENGTH_LONG).show();
+                } else if (!(response.isSuccessful())) {
+                    Toast.makeText(MainActivity.this, response.code() + " ", Toast.LENGTH_LONG).show();
                     return;
                 }
-                weather mydata=response.body();
-                mainWeatherClass main=mydata.getMain();
-                Double temp=main.getTemp();
-                Integer temperature=(int)(temp-273.15);
-                tv.setText(String.valueOf(temperature)+"C");
+                weather mydata = response.body();
+                mainWeatherClass main = mydata.getMain();
+                Double temp = main.getTemp();
+                Integer temperature = (int) (temp - 273.15);
+                tv.setText(String.valueOf(temperature) + "C");
             }
 
             @Override
             public void onFailure(Call<weather> call, Throwable t) {
-                Toast.makeText(MainActivity.this,t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 
-
-
-
-        goToPlaneActivity();
 
     }
 
@@ -137,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         authUser = Amplify.Auth.getCurrentUser();
 
-        String email= "";
-        if (authUser == null){
+        String email = "";
+        if (authUser == null) {
 
             Button signInButton = (Button) findViewById(R.id.signInMainActivity);
             signInButton.setVisibility(View.VISIBLE);
@@ -175,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setUpSignInAndSignOutButtons(){
+    private void setUpSignInAndSignOutButtons() {
         Button signInButton = (Button) findViewById(R.id.signInMainActivity);
         signInButton.setOnClickListener(v -> {
             Intent goToSignInIntent = new Intent(this, signInActivity.class);
@@ -184,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button signOutButton = (Button) findViewById(R.id.logOutMainActivity);
         signOutButton.setOnClickListener(v -> {
-            Amplify.Auth.signOut(()->{
+            Amplify.Auth.signOut(() -> {
                         Log.i(TAG, "Log Out Succeeded :D");
                         runOnUiThread(() -> {
 //                            ((TextView)findViewById(R.id.usernameTextView)).setText("");
@@ -201,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void goToPlaneActivity() {
+    public void goToPlaneActivity(View view) {
         Button planeButton = (Button) findViewById(R.id.planeButton);
         planeButton.setOnClickListener(v -> {
             Intent goToPlaneIntent = new Intent(this, PlanActivity.class);
