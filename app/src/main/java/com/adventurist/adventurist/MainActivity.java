@@ -39,12 +39,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        goToPlaneActivity();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         authUser = Amplify.Auth.getCurrentUser();
+
         String email= "";
         if (authUser == null){
             Button signInButton = (Button) findViewById(R.id.signInMainActivity);
@@ -104,6 +107,14 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(this, "Log Out failed", Toast.LENGTH_LONG);
                         });
                     });
+        });
+    }
+
+    private void goToPlaneActivity() {
+        Button planeButton = (Button) findViewById(R.id.planeButton);
+        planeButton.setOnClickListener(v -> {
+            Intent goToPlaneIntent = new Intent(this, PlanActivity.class);
+            startActivity(goToPlaneIntent);
         });
     }
 }

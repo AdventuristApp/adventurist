@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".AdventuresAmplify"
@@ -16,8 +16,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Adventurist"
-        tools:targetApi="31"
-        tools:ignore="ObsoleteSdkInt">
+        tools:ignore="ObsoleteSdkInt"
+        tools:targetApi="31">
+        <activity
+            android:name=".PlanDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PlanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddPlanActivity"
+            android:exported="false" />
         <activity
             android:name=".GalleryActivity"
             android:exported="false" />
@@ -50,6 +59,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 
 </manifest>

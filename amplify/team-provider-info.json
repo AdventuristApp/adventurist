@@ -17,6 +17,15 @@
       },
       "api": {
         "adventurist": {}
+      },
+      "storage": {
+        "adventurist": {}
+      },
+      "analytics": {
+        "adventurist": {}
+      },
+      "geo": {
+        "adventureMap": {}
       }
     }
   }
