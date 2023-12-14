@@ -1,3 +1,4 @@
+
 <resources>
     <string name="app_name">adventurist</string>
     <string name="todo">TODO</string>
@@ -7,7 +8,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_location">search Location...</string>
-
+    <string name="your_user_name" translatable="false"> username: %1$s</string>
+    <string name="textview">TextView</string>
     <string name="adventurist">Adventurist</string>
     <string name="welcome">Welcome</string>
     <string name="please_login_with_your_information">Please login with your information</string>
@@ -18,5 +20,10 @@
     <string name="sign_up">Sign up</string>
     <string name="unlock_the_mystery_input_the_secret_code_to_unveil_the_magic">Unlock the mystery! Input the secret code to unveil the magic.</string>
     <string name="code">code</string>
+    <string name="save_your_memories">Save Your Memories</string>
+    <string name="nicename">NiceName</string>
+    <string name="navigation_drawer_open">open navigation drawer</string>
+    <string name="navigation_drawer_close">close navigation drawer</string>
+
 
 </resources>

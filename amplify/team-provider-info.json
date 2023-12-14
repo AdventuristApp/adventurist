@@ -18,6 +18,7 @@
       "api": {
         "adventurist": {}
       },
+
       "storage": {
         "adventurist": {}
       },
@@ -26,6 +27,7 @@
       },
       "geo": {
         "adventureMap": {}
+
       }
     }
   }

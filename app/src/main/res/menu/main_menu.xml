@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group android:checkableBehavior="single">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_xxx"
+        android:icon="@drawable/baseline_home_24"
+        android:title="xxxxx" />
+    <item
+        android:id="@+id/nav_Hotels"
+        android:icon="@drawable/hotel__2_"
+        android:title="Hotels" />
+    <item
+        android:id="@+id/nav_plane"
+        android:icon="@drawable/airplane_ticket"
+        android:title="Plans" />
+</group>
+    <item android:title="Profile">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/person"
+                    android:title="Profile" />
+                <item
+                    android:id="@+id/nav_Gallery"
+                    android:icon="@drawable/gallery"
+                    android:title="Gallery" />
+
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/logout"
+                    android:title="Logout" />
+<!--                <item-->
+<!--                    android:id="@+id/nav_logout"-->
+<!--                    android:icon="@drawable/logout"-->
+<!--                    android:title="Logout" />-->
+            </group>
+        </menu>
+    </item>
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_rate"
+                android:icon="@drawable/rate"
+                android:title="Rate Us" />
+        </menu>
+    </item>
+</menu>
