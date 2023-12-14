@@ -1,6 +1,8 @@
 package com.adventurist.adventurist;
 
-import static com.adventurist.adventurist.GalleryActivity.Main_ID_TAG;
+
+
+import static com.adventurist.adventurist.GalleryActivity.Gallery_TAG;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -63,7 +65,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         // Make it clickable
         listViewHolder.setOnClickListener(view -> {
             Intent goToshowIntent = new Intent(callingActivity, showActivity.class);
-            goToshowIntent.putExtra(Main_ID_TAG, Images.ID.toString());
+            goToshowIntent.putExtra(Gallery_TAG, Images.ID.toString());
 
             // Pass the URI of the clicked image to the new activity
             goToshowIntent.putExtra("imageUri", imageUri.toString());

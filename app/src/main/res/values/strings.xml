@@ -21,5 +21,7 @@
     <string name="code">code</string>
     <string name="save_your_memories">Save Your Memories</string>
     <string name="nicename">NiceName</string>
+    <string name="navigation_drawer_open">open navigation drawer</string>
+    <string name="navigation_drawer_close">close navigation drawer</string>
 
 </resources>

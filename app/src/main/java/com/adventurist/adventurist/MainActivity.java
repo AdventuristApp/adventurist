@@ -2,15 +2,20 @@ package com.adventurist.adventurist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adventurist.adventurist.Fragments.weatherapi;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.core.Amplify;
@@ -20,19 +25,31 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity {
 
-
+    EditText et;
+    TextView tv;
+    String url = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}";
+    String apikey = "a66f2f468eda4be91f3d4b46e63a34c4";
+    LocationManager manager;
+    LocationListener locationListener;
     public static final String TAG = "MainActivity";
     AuthUser authUser = null;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setUpSignInAndSignOutButtons();
+ setUpSignInAndSignOutButtons();
 
         String emptyFilename= "emptyTestFileName";
         File emptyFile = new File(getApplicationContext().getFilesDir(), emptyFilename);
@@ -71,19 +88,57 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        et = findViewById(R.id.et);
+        tv = findViewById(R.id.tv);
+
+    }
+
+    public void getweather(View v){
+        Retrofit retrofit=new Retrofit.Builder()
+                .baseUrl("https://api.openweathermap.org/data/2.5/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        weatherapi myapi=retrofit.create(weatherapi.class);
+        Call<weather> examplecall=myapi.getweather(et.getText().toString().trim(),apikey);
+        examplecall.enqueue(new Callback<weather>() {
+            @Override
+            public void onResponse(Call<weather> call, Response<weather> response) {
+                if(response.code()==404){
+                    Toast.makeText(MainActivity.this,"Please Enter a valid City",Toast.LENGTH_LONG).show();
+                }
+                else if(!(response.isSuccessful())){
+                    Toast.makeText(MainActivity.this,response.code()+" ",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                weather mydata=response.body();
+                mainWeatherClass main=mydata.getMain();
+                Double temp=main.getTemp();
+                Integer temperature=(int)(temp-273.15);
+                tv.setText(String.valueOf(temperature)+"C");
+            }
+
+            @Override
+            public void onFailure(Call<weather> call, Throwable t) {
+                Toast.makeText(MainActivity.this,t.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         authUser = Amplify.Auth.getCurrentUser();
-        String email= "";
-        if (authUser == null){
+        String email = "";
+        if (authUser == null) {
             Button signInButton = (Button) findViewById(R.id.signInMainActivity);
             signInButton.setVisibility(View.VISIBLE);
             Button signOutButton = (Button) findViewById(R.id.logOutMainActivity);
             signOutButton.setVisibility(View.INVISIBLE);
-        }else {
+        } else {
             email = authUser.getUsername();
             Log.i(TAG, "User Email is: " + email);
 
@@ -97,11 +152,11 @@ public class MainActivity extends AppCompatActivity {
             Amplify.Auth.fetchUserAttributes(
                     success -> {
                         Log.i(TAG, "Fetching user email: " + visibleUserEmail);
-                        for (AuthUserAttribute userAttribute : success){
-                            if (userAttribute.getKey().getKeyString().equals("email")){
+                        for (AuthUserAttribute userAttribute : success) {
+                            if (userAttribute.getKey().getKeyString().equals("email")) {
                                 String userEmail = userAttribute.getValue();
-                                runOnUiThread(() ->{
-                                    ((TextView)findViewById(R.id.usernameTextView)).setText(userEmail);
+                                runOnUiThread(() -> {
+//                                    ((TextView) findViewById(R.id.usernameTextView)).setText(userEmail);
                                 });
                             }
                         }
@@ -112,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             );
         }
     }
+
 
     private void setUpSignInAndSignOutButtons(){
         Button signInButton = (Button) findViewById(R.id.signInMainActivity);
@@ -125,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
             Amplify.Auth.signOut(()->{
                         Log.i(TAG, "Log Out Succeeded :D");
                         runOnUiThread(() -> {
-                            ((TextView)findViewById(R.id.usernameTextView)).setText("");
+//                            ((TextView)findViewById(R.id.usernameTextView)).setText("");
                         });
                         Intent goToSignInIntent = new Intent(this, signInActivity.class);
                         startActivity(goToSignInIntent);

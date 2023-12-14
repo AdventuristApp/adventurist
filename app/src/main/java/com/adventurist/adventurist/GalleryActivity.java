@@ -4,7 +4,12 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,12 +24,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
+import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Images;
+import com.google.android.material.navigation.NavigationView;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -33,7 +45,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GalleryActivity extends AppCompatActivity {
+public class GalleryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String TAG = "Galleryactivity";
     ActivityResultLauncher<Intent> activityResultLauncher;
     private String s3ImageKey = "";
@@ -42,12 +54,69 @@ public class GalleryActivity extends AppCompatActivity {
     private ArrayList<Uri> imageUris;
     private List<Images> ImageList = new ArrayList<>();
 
-    public static final String Main_ID_TAG = "task ID";
+    public static final String Gallery_TAG = "GalleryTag";
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
+    Menu menu;
+    TextView textView;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
+
+
+        AuthUser authUser = Amplify.Auth.getCurrentUser();
+        if (authUser != null) {
+            String username = "";
+            username = authUser.getUsername();
+            Log.i(Gallery_TAG, "UserName found" + username);
+            String username2 = username; // ugly way for lambda hack
+            Amplify.Auth.fetchUserAttributes(
+                    success ->
+                    {
+                        Log.i(Gallery_TAG, "Fetch user attributes succeeded for username: " + username2);
+                        for (AuthUserAttribute userAttribute : success) {
+                            if (userAttribute.getKey().getKeyString().equals("nickname")) {
+                                String userName = userAttribute.getValue();
+                                runOnUiThread(() ->
+                                {
+
+                                    ((TextView) findViewById(R.id.navNAME)).setText(userName);
+                                });
+                            }
+                        }
+                    },
+                    failure ->
+                    {
+                        Log.i(Gallery_TAG, "Fetch user attributes failed: " + failure.toString());
+                    }
+            );
+        }
+
+
+
+        /*---------------------Hooks------------------------*/
+        drawerLayout = findViewById(R.id.drawer_layout4);
+        navigationView = findViewById(R.id.nav_view4);
+        textView = findViewById(R.id.textView);
+        toolbar = findViewById(R.id.toolbar2);
+        navigationView.bringToFront();
+
+        ActionBarDrawerToggle toggle = new
+                ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_home);
+
+
+        menu = navigationView.getMenu();
+        menu.findItem(R.id.nav_logout).setVisible(true);
+        menu.findItem(R.id.nav_profile).setVisible(true);
+
 
         imageRecyclerView = findViewById(R.id.imageRecyclerView);
         imageUris = new ArrayList<>();
@@ -69,9 +138,6 @@ public class GalleryActivity extends AppCompatActivity {
         activityResultLauncher = getImagePickingActivityResultLauncher();
 
         setUpAddImageButton();
-
-
-
 
 
     }
@@ -102,7 +168,6 @@ public class GalleryActivity extends AppCompatActivity {
                 failure -> Log.e(TAG, "Failed to read images", failure)
         );
     }
-
 
 
 
@@ -299,53 +364,64 @@ public class GalleryActivity extends AppCompatActivity {
         }
         return result;
     }
-//     private void setUpDeleteImageButton()
-//    {
-//        Button deleteImageButton = (Button)findViewById(R.id.deleteImage);
-//        String s3ImageKey = this.s3ImageKey;
-//        deleteImageButton.setOnClickListener(v ->
-//        {
-//            Amplify.Storage.remove(
-//                    s3ImageKey,
-//                    success ->
-//                    {
-//                        Log.i(TAG, "Succeeded in deleting file on S3! Key is: " + success.getKey());
-//
-//                    },
-//                    failure ->
-//                    {
-//                        Log.e(TAG, "Failure in deleting file on S3 with key: " + s3ImageKey + " with error: " + failure.getMessage());
-//                    }
-//            );
-////            ImageView productImageView = findViewById(R.id.addtaskimageView2);
-////            productImageView.setImageResource(android.R.color.transparent);
-//
-////            saveTask("");
-////            switchFromDeleteButtonToAddButton(deleteImageButton);
-//        });
-//    }
-//    // Assuming you have a method to get the S3 key from the Uri
-//
-//
-//
-//
-//    private void updateImageButtons() {
-//        ImageView addImage = findViewById(R.id.addImageClickable);
-//        Button deleteImageButton = findViewById(R.id.deleteImage);
-//        runOnUiThread(() -> {
-//            if (s3ImageKey == null || s3ImageKey.isEmpty()) {
-//                deleteImageButton.setVisibility(View.INVISIBLE);
-////                addImage.setVisibility(View.VISIBLE);
-//            } else {
-//                deleteImageButton.setVisibility(View.VISIBLE);
-////                addImage.setVisibility(View.INVISIBLE);
-//            }
-//        });
-//    }
 
-//    private void switchFromDeleteButtonToAddButton(Button deleteImageButton) {
-//        ImageView addImageButton = findViewById(R.id.addImageClickable);
-//        deleteImageButton.setVisibility(View.INVISIBLE);
-//        addImageButton.setVisibility(View.VISIBLE);
-//    }
+
+    @Override
+    public void onBackPressed(){
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else
+        {super.onBackPressed();
+        }
+    }
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        menu.findItem(R.id.nav_logout).setVisible(true);
+        if (itemId == R.id.nav_home) {
+            Intent intent = new Intent(GalleryActivity.this, MainActivity.class);
+            startActivity(intent);
+        } else if (itemId == R.id.nav_Hotels) {
+            Intent intent = new Intent(GalleryActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        }
+
+        else if (itemId == R.id.nav_profile) {
+            Intent intent = new Intent(GalleryActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        }
+
+
+        else if (itemId == R.id.nav_logout) {
+            menu.findItem(R.id.nav_logout).setVisible(true);
+            menu.findItem(R.id.nav_profile).setVisible(true);
+            menu.findItem(R.id.nav_Gallery).setVisible(true);
+
+            Amplify.Auth.signOut(()->{
+                        Log.i(Gallery_TAG, "Log Out Succeeded :D");
+                        runOnUiThread(() -> {
+//                            ((TextView)findViewById(R.id.usernameTextView)).setText("");
+                        });
+                        Intent goToSignInIntent = new Intent(this, signInActivity.class);
+                        startActivity(goToSignInIntent);
+                    },
+                    fail -> {
+                        Log.i(Gallery_TAG, "Log Out failed");
+                        runOnUiThread(() -> {
+                            Toast.makeText(this, "Log Out failed", Toast.LENGTH_LONG);
+                        });
+                    });
+        } else if (itemId == R.id.nav_Gallery) {
+            Intent intent = new Intent(GalleryActivity.this, GalleryActivity.class);
+            startActivity(intent);}
+
+        else if (itemId == R.id.nav_share) {
+            Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
 }

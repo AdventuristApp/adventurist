@@ -1,212 +1,366 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".ProfileActivity"
+    tools:openDrawer="start">
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="100dp"
-        android:layout_height="56dp"
-        android:contentDescription="@string/todo"
-        app:srcCompat="@drawable/distribution"
-        tools:ignore="MissingConstraints,ImageContrastCheck"
-        tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="282dp"
-        android:layout_height="45dp"
-        android:fontFamily="cursive"
-        android:text="Adventurist"
-        android:textColor="@color/white"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar2"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578"
-        tools:ignore="SpUsage" />
-
-    <ImageView
-        android:id="@+id/profileImage"
-        android:layout_width="111dp"
-        android:layout_height="79dp"
-        android:src="@drawable/profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.136" />
-
-
-    <TextView
-        android:id="@+id/profileName"
-        android:layout_width="235dp"
-        android:layout_height="29dp"
-        android:hint="@string/your_user_name"
-        android:text="textview"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.744"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.158"
-        tools:fontFamily="cursive"
-        tools:ignore="HardcodedText,MissingConstraints" />
-
-    <TextView
-        android:id="@+id/Gallery"
-        android:layout_width="78dp"
-        android:layout_height="26dp"
-        android:fontFamily="cursive"
-        android:text="FavHotels"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.408" />
-
-    <TextView
-        android:id="@+id/FavHOTEL"
-        android:layout_width="42dp"
-        android:layout_height="22dp"
-        android:fontFamily="cursive"
-        android:text="Gallery"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.406"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/FavRES"
-        android:layout_width="85dp"
-        android:layout_height="30dp"
-        android:fontFamily="cursive"
-        android:text="FavResturants"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageTrips"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GalleryImageView"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/MyTrips"
-        android:layout_width="85dp"
-        android:layout_height="30dp"
-        android:fontFamily="cursive"
-        android:text="MyTrips"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.668"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageHotels"
-        app:layout_constraintVertical_bias="0.034" />
-
-    <ImageView
-        android:id="@+id/GalleryImageView"
-        android:layout_width="135dp"
-        android:layout_height="119dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.513"
-        app:srcCompat="@drawable/gallery" />
-
-    <ImageView
-        android:id="@+id/imageHotels"
-        android:layout_width="135dp"
-        android:layout_height="119dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.699"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.519"
-        app:srcCompat="@drawable/review" />
-
-    <ImageView
-        android:id="@+id/imageTrips"
-        android:layout_width="135dp"
-        android:layout_height="119dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777"
-        app:srcCompat="@drawable/restaurant" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="135dp"
-        android:layout_height="119dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.739"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777"
-        app:srcCompat="@drawable/travels" />
-
-    <Button
-        android:id="@+id/EditProfile"
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view3"
+        android:layout_gravity="start"
+        android:layout_height="match_parent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue"
-        android:text="Edit profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.884"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.153"
-        tools:ignore="TextContrastCheck" />
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg">
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigatin_view"
-        android:layout_width="410dp"
-        android:layout_height="65dp"
-        android:background="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.998"
-        app:menu="@menu/botton_nav" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="272dp"
+                android:background="@color/blue"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="-36dp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="116dp"
+                android:text="welcome Adventuirst"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                app:fontFamily="@font/architects_daughter"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+              />
+
+            <TextView
+                android:id="@+id/profileNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:hint="@string/your_user_name"
+                android:text="Name"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.183" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="56dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:srcCompat="@drawable/profile" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="175dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#6F9FA8AC">
+
+                        <TextView
+                            android:id="@+id/GallerytextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/GalleryImageView2"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:text="Gallery"
+                            android:textSize="24sp"
+                            app:fontFamily="@font/architects_daughter" />
+
+                        <ImageView
+                            android:id="@+id/GalleryImageView2"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/cam" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#6F9FA8AC">
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/train"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:text="My Trips"
+                            android:textSize="24sp"
+                            app:fontFamily="@font/architects_daughter" />
+
+                        <ImageView
+                            android:id="@+id/train"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/homee" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="175dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#6F9FA8AC">
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/cycle"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:text="Fav Resturant"
+                            android:textSize="24sp"
+                            app:fontFamily="@font/architects_daughter" />
+
+                        <ImageView
+                            android:id="@+id/cycle"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/rest" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        android:background="#6F9FA8AC">
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/airplane"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:text="Fav Hotels"
+                            android:textSize="24sp"
+                            app:fontFamily="@font/architects_daughter" />
+
+                        <ImageView
+                            android:id="@+id/airplane"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/review" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
 
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/blue"
+                android:text="Edit profile"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.88"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:layout_constraintVertical_bias="1.0" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="100dp"
+                android:layout_height="56dp"
+                android:contentDescription="@string/todo"
+                android:padding="20dp"
+                app:srcCompat="@drawable/distribution"
+                tools:ignore="MissingConstraints,ImageContrastCheck"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="282dp"
+                android:layout_height="45dp"
+                android:fontFamily="cursive"
+                android:text="Adventurist"
+                android:textColor="@color/white"
+                android:textSize="35dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+                app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+                app:layout_constraintHorizontal_bias="0.875"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.578"
+                tools:ignore="SpUsage" />
+
+            <!--    <ImageView-->
+            <!--        android:id="@+id/profileImage"-->
+            <!--        android:layout_width="111dp"-->
+            <!--        android:layout_height="79dp"-->
+            <!--        android:src="@drawable/profile"-->
+            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--        app:layout_constraintHorizontal_bias="0.01"-->
+            <!--        app:layout_constraintStart_toStartOf="parent"-->
+            <!--        app:layout_constraintTop_toBottomOf="@+id/toolbar2"-->
+            <!--        app:layout_constraintVertical_bias="0.136" />-->
+
+
+            <!--    <TextView-->
+            <!--        android:id="@+id/Gallery"-->
+            <!--        android:layout_width="78dp"-->
+            <!--        android:layout_height="26dp"-->
+            <!--        android:fontFamily="cursive"-->
+            <!--        android:text="FavHotels"-->
+            <!--        android:textStyle="bold"-->
+            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--        app:layout_constraintHorizontal_bias="0.612"-->
+            <!--        app:layout_constraintStart_toStartOf="parent"-->
+            <!--        app:layout_constraintTop_toTopOf="parent"-->
+            <!--        app:layout_constraintVertical_bias="0.408" />-->
+
+            <!--    <TextView-->
+            <!--        android:id="@+id/FavHOTEL"-->
+            <!--        android:layout_width="42dp"-->
+            <!--        android:layout_height="22dp"-->
+            <!--        android:fontFamily="cursive"-->
+            <!--        android:text="Gallery"-->
+            <!--        android:textSize="16sp"-->
+            <!--        android:textStyle="bold"-->
+            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--        app:layout_constraintHorizontal_bias="0.094"-->
+            <!--        app:layout_constraintStart_toStartOf="parent"-->
+            <!--        app:layout_constraintTop_toTopOf="parent"-->
+            <!--        app:layout_constraintVertical_bias="0.406"-->
+            <!--        tools:ignore="MissingConstraints" />-->
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/FavRES"-->
+            <!--            android:layout_width="85dp"-->
+            <!--            android:layout_height="30dp"-->
+            <!--            android:fontFamily="cursive"-->
+            <!--            android:text="FavResturants"-->
+            <!--            android:textStyle="bold"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintHorizontal_bias="0.141"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            tools:layout_editor_absoluteY="34dp" />-->
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/MyTrips"-->
+            <!--            android:layout_width="85dp"-->
+            <!--            android:layout_height="30dp"-->
+            <!--            android:fontFamily="cursive"-->
+            <!--            android:text="MyTrips"-->
+            <!--            android:textStyle="bold"-->
+            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintHorizontal_bias="0.668"-->
+            <!--            app:layout_constraintStart_toStartOf="parent" />-->
+
+            <!--        <Button-->
+            <!--        android:id="@+id/EditProfile"-->
+            <!--        android:layout_width="wrap_content"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:backgroundTint="@color/blue"-->
+            <!--        android:text="Edit profile"-->
+            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--        app:layout_constraintHorizontal_bias="0.884"-->
+            <!--        app:layout_constraintStart_toStartOf="parent"-->
+            <!--        app:layout_constraintTop_toTopOf="@+id/toolbar2"-->
+            <!--        app:layout_constraintVertical_bias="0.153"-->
+            <!--        tools:ignore="TextContrastCheck" />-->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.drawerlayout.widget.DrawerLayout>

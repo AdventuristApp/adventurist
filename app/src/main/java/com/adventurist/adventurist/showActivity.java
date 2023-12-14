@@ -20,7 +20,7 @@ public class showActivity extends AppCompatActivity {
 
 
         Intent callingIntent = getIntent();
-        String imageUriString = callingIntent.getStringExtra(GalleryActivity.Main_ID_TAG);
+        String imageUriString = callingIntent.getStringExtra(GalleryActivity.Gallery_TAG);
         Uri imageUri = Uri.parse(imageUriString);
 
         // Set the imageUri to the ImageView
