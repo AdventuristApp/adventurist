@@ -330,5 +330,5 @@
       }
     }
   },
-  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.7.1\",\"stackType\":\"geo-PlaceIndex\",\"metadata\":{}}"
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.8.2\",\"stackType\":\"geo-PlaceIndex\",\"metadata\":{}}"
 }
