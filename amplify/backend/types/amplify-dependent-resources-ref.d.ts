@@ -24,6 +24,21 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolName": "string"
     }
   },
+
+  "geo": {
+    "adventureLocationSearch": {
+      "Arn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
+    "adventureMap": {
+      "Arn": "string",
+      "Name": "string",
+      "Region": "string",
+      "Style": "string"
+    }
+  },
+
   "storage": {
     "adventurist": {
       "BucketName": "string",

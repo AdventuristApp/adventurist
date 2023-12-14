@@ -1,3 +1,4 @@
+
 <resources>
     <string name="app_name">adventurist</string>
     <string name="todo">TODO</string>
@@ -23,5 +24,6 @@
     <string name="nicename">NiceName</string>
     <string name="navigation_drawer_open">open navigation drawer</string>
     <string name="navigation_drawer_close">close navigation drawer</string>
+
 
 </resources>

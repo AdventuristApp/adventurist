@@ -18,11 +18,16 @@
       "api": {
         "adventurist": {}
       },
+
+      "storage": {
+        "adventurist": {}
+      },
       "analytics": {
         "adventurist": {}
       },
-      "storage": {
-        "adventurist": {}
+      "geo": {
+        "adventureMap": {}
+
       }
     }
   }

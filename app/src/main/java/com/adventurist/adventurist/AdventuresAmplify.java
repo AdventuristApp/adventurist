@@ -38,3 +38,4 @@ public class AdventuresAmplify extends Application {
         }
     }
 }
+
