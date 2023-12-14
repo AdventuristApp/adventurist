@@ -85,9 +85,9 @@
                 android:id="@+id/emailSignInField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
                 android:autofillHints="enter your email"
-                tools:ignore="LabelFor" />
+                android:inputType="textEmailAddress"
+                tools:ignore="LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <View
                 android:layout_width="wrap_content"
@@ -104,9 +104,9 @@
                 android:id="@+id/passwordSignInfield"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:autofillHints="Password"
-                tools:ignore="LabelFor" />
+                android:inputType="textPassword"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
             <View
