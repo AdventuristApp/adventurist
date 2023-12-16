@@ -18,26 +18,18 @@ public class showActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
 
-
         Intent callingIntent = getIntent();
-        String imageUriString = callingIntent.getStringExtra(GalleryActivity.Gallery_TAG);
-        Uri imageUri = Uri.parse(imageUriString);
+        String imageUriString = callingIntent.getStringExtra("imageUri");
 
         // Set the imageUri to the ImageView
         ImageView imageView = findViewById(R.id.Imagefromgallrey);
-        imageView.setImageURI(imageUri);
 
         try {
+            // Convert the string back to Uri and set the image
+            Uri imageUri = Uri.parse(imageUriString);
             imageView.setImageURI(imageUri);
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Error loading image: " + e.getMessage());
         }
-
-
-
-
-
-
-    }
-}
+    }}

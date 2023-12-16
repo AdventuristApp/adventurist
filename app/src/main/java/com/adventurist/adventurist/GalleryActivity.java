@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adventurist.adventurist.adapter.ImageAdapter;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
@@ -45,6 +47,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GalleryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+
     public static final String TAG = "Galleryactivity";
     ActivityResultLauncher<Intent> activityResultLauncher;
     private String s3ImageKey = "";
@@ -119,11 +123,10 @@ public class GalleryActivity extends AppCompatActivity implements NavigationView
 
         imageRecyclerView = findViewById(R.id.imageRecyclerView);
         imageUris = new ArrayList<>();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager = new GridLayoutManager(this, 3);
         imageRecyclerView.setLayoutManager(layoutManager);
         imageAdapter = new ImageAdapter(imageUris, this);
         imageRecyclerView.setAdapter(imageAdapter);
-
         imageAdapter.OnItemClickListner(new ImageAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
