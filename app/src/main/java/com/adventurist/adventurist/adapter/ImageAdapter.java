@@ -84,7 +84,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
         public ImageViewHolder(@NonNull View itemView, OnItemClickListener listener, Context callingActivity) {
             super(itemView);
-            this.callingActivity = callingActivity; 
+            this.callingActivity = callingActivity;
             imageView = itemView.findViewById(R.id.imageFragment);
             imageView2 = itemView.findViewById(R.id.delFragmentImage);
             imageView2.setOnClickListener(view -> {
