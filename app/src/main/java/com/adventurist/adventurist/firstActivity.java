@@ -32,13 +32,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class firstActivity extends AppCompatActivity {
-
-    EditText et;
-    TextView tv;
-    String url = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}";
-    String apikey = "a66f2f468eda4be91f3d4b46e63a34c4";
-    LocationManager manager;
-    LocationListener locationListener;
+//
+//    EditText et;
+//    TextView tv;
+//    String url = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}";
+//    String apikey = "a66f2f468eda4be91f3d4b46e63a34c4";
+//    LocationManager manager;
+//    LocationListener locationListener;
     public static final String TAG = "MainActivity";
     AuthUser authUser = null;
 
@@ -88,37 +88,37 @@ public class firstActivity extends AppCompatActivity {
 
     }
 
-    public void getweather(View v) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.openweathermap.org/data/2.5/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        weatherapi myapi = retrofit.create(weatherapi.class);
-        Call<weather> examplecall = myapi.getweather(et.getText().toString().trim(), apikey);
-        examplecall.enqueue(new Callback<weather>() {
-            @Override
-            public void onResponse(Call<weather> call, Response<weather> response) {
-                if (response.code() == 404) {
-                    Toast.makeText(firstActivity.this, "Please Enter a valid City", Toast.LENGTH_LONG).show();
-                } else if (!(response.isSuccessful())) {
-                    Toast.makeText(firstActivity.this, response.code() + " ", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                weather mydata = response.body();
-                mainWeatherClass main = mydata.getMain();
-                Double temp = main.getTemp();
-                Integer temperature = (int) (temp - 273.15);
-                tv.setText(String.valueOf(temperature) + "C");
-            }
+//    public void getweather(View v) {
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("https://api.openweathermap.org/data/2.5/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        weatherapi myapi = retrofit.create(weatherapi.class);
+//        Call<weather> examplecall = myapi.getweather(et.getText().toString().trim(), apikey);
+//        examplecall.enqueue(new Callback<weather>() {
+//            @Override
+//            public void onResponse(Call<weather> call, Response<weather> response) {
+//                if (response.code() == 404) {
+//                    Toast.makeText(firstActivity.this, "Please Enter a valid City", Toast.LENGTH_LONG).show();
+//                } else if (!(response.isSuccessful())) {
+//                    Toast.makeText(firstActivity.this, response.code() + " ", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                weather mydata = response.body();
+//                mainWeatherClass main = mydata.getMain();
+//                Double temp = main.getTemp();
+//                Integer temperature = (int) (temp - 273.15);
+//                tv.setText(String.valueOf(temperature) + "C");
+//            }
+//
+//            @Override
+//            public void onFailure(Call<weather> call, Throwable t) {
+//                Toast.makeText(firstActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
 
-            @Override
-            public void onFailure(Call<weather> call, Throwable t) {
-                Toast.makeText(firstActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
 
-
-    }
+//    }
 
     @Override
     protected void onResume() {

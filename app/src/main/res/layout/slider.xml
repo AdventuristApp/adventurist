@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="415dp"
+    android:layout_height="630dp"
     android:orientation="vertical"
     app:flow_horizontalAlign="center">
 
@@ -11,22 +11,25 @@
         android:id="@+id/titleImage"
         android:layout_width="415dp"
         android:layout_height="630dp"
-        android:src="@drawable/intro" />
+        android:src="@drawable/intro"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/texttitle"
-        android:layout_width="331dp"
-        android:layout_height="107dp"
-        android:fontFamily="casual"
-        android:text="lets discover the world"
+        android:layout_width="290dp"
+        android:layout_height="141dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/adventurist"
+        android:textAlignment="center"
         android:textColor="@color/background"
-        android:textSize="30dp"
+        android:textSize="50dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintVertical_bias="0.247" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

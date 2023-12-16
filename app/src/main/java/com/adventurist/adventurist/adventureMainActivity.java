@@ -12,24 +12,40 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adventurist.adventurist.Fragments.weatherapi;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.core.Amplify;
 import com.google.android.material.navigation.NavigationView;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class adventureMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    EditText et;
+    TextView tv;
+    String url = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}";
+    String apikey = "a66f2f468eda4be91f3d4b46e63a34c4";
+    LocationManager manager;
+    LocationListener locationListener;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -42,6 +58,9 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adventure_main);
         setUpButtonsAndclickableImage();
+//        getweather(View);
+        et = findViewById(R.id.et);
+        tv = findViewById(R.id.tv);
 
         AuthUser authUser = Amplify.Auth.getCurrentUser();
         if (authUser != null) {
@@ -91,7 +110,7 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         menu = navigationView.getMenu();
         menu.findItem(R.id.nav_logout).setVisible(true);
         menu.findItem(R.id.nav_profile).setVisible(true);
-
+/*-----------------------------------------------------------------------*/
 
     }
 
@@ -245,4 +264,37 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
 
 }
 
+
+
+    public void getweather(View v) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.openweathermap.org/data/2.5/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        weatherapi myapi = retrofit.create(weatherapi.class);
+        Call<weather> examplecall = myapi.getweather(et.getText().toString().trim(), apikey);
+        examplecall.enqueue(new Callback<weather>() {
+            @Override
+            public void onResponse(Call<weather> call, Response<weather> response) {
+                if (response.code() == 404) {
+                    Toast.makeText(adventureMainActivity.this, "Please Enter a valid City", Toast.LENGTH_LONG).show();
+                } else if (!(response.isSuccessful())) {
+                    Toast.makeText(adventureMainActivity.this, response.code() + " ", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                weather mydata = response.body();
+                mainWeatherClass main = mydata.getMain();
+                Double temp = main.getTemp();
+                Integer temperature = (int) (temp - 273.15);
+                tv.setText(String.valueOf(temperature) + "C");
+            }
+
+            @Override
+            public void onFailure(Call<weather> call, Throwable t) {
+                Toast.makeText(adventureMainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+    }
 }

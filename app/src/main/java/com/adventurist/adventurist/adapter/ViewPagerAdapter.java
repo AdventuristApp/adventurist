@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,10 +18,10 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     int images[] = {
 
-            R.drawable.intro,
-            R.drawable.image4,
             R.drawable.bg,
-            R.drawable.bg2
+            R.drawable.intro,
+            R.drawable.bg2,
+            R.drawable.image4
 
     };
 
