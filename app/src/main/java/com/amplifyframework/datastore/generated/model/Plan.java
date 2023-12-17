@@ -312,7 +312,4 @@ public final class Plan implements Model {
       return (CopyOfBuilder) super.userId(userId);
     }
   }
-  
-
-  
 }
