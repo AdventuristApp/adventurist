@@ -234,14 +234,14 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
 
 
 
-    TextView profileName = findViewById(R.id.NICENAME);
-    profileName.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent1 = new Intent(adventureMainActivity.this, TEST.class);
-            startActivity(intent1);
-        }
-    });
+//    TextView profileName = findViewById(R.id.NICENAME);
+//    profileName.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Intent intent1 = new Intent(adventureMainActivity.this, TEST.class);
+//            startActivity(intent1);
+//        }
+//    });
 
 }
 
