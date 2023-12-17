@@ -1,19 +1,13 @@
 package com.adventurist.adventurist;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.Manifest;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,15 +19,11 @@ import com.adventurist.adventurist.Fragments.weatherapi;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.core.Amplify;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,6 +32,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
+
     EditText et;
     TextView tv;
     String url = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}";
@@ -58,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setUpSignInAndSignOutButtons();
-
         String emptyFilename = "emptyTestFileName";
         File emptyFile = new File(getApplicationContext().getFilesDir(), emptyFilename);
         try {
@@ -137,11 +127,38 @@ public class MainActivity extends AppCompatActivity {
 
         String email = "";
         if (authUser == null) {
-            Intent goToSigningPage = new Intent(this,signInActivity.class);
-            startActivity(goToSigningPage);
+
+            Button signInButton = (Button) findViewById(R.id.signInMainActivity);
+            signInButton.setVisibility(View.VISIBLE);
+            Button signOutButton = (Button) findViewById(R.id.logOutMainActivity);
+            signOutButton.setVisibility(View.INVISIBLE);
         } else {
-            Intent goToHomePage = new Intent(this, adventureMainActivity.class);
-            startActivity(goToHomePage);
+            email = authUser.getUsername();
+            Log.i(TAG, "User Email is: " + email);
+
+            Button signInButton = (Button) findViewById(R.id.signInMainActivity);
+            signInButton.setVisibility(View.INVISIBLE);
+
+            Button signOutButton = (Button) findViewById(R.id.logOutMainActivity);
+            signOutButton.setVisibility(View.VISIBLE);
+
+            String visibleUserEmail = email;
+            Amplify.Auth.fetchUserAttributes(
+                    success -> {
+                        Log.i(TAG, "Fetching user email: " + visibleUserEmail);
+                        for (AuthUserAttribute userAttribute : success) {
+                            if (userAttribute.getKey().getKeyString().equals("email")) {
+                                String userEmail = userAttribute.getValue();
+                                runOnUiThread(() -> {
+//                                    ((TextView) findViewById(R.id.usernameTextView)).setText(userEmail);
+                                });
+                            }
+                        }
+                    },
+                    fail -> {
+                        Log.i(TAG, "Fetching user email failed: " + fail.toString());
+                    }
+            );
         }
     }
 
@@ -179,5 +196,4 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToPlaneIntent);
         });
     }
-
 }

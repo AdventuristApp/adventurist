@@ -21,11 +21,3 @@ type Plan @model @auth(rules: [{allow: public}]){
   budget: Float!
   userId: ID!
 }
-
-type Location @model @auth(rules: [{ allow: public }]) {
-  id: ID!
-  longitude: String!
-  latitude: String!
-  country: String
-  city: String
-}
