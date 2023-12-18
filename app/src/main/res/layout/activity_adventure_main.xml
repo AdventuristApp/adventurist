@@ -301,7 +301,7 @@
                                     android:id="@+id/tex"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="plans"
+                                    android:text="Map"
                                     android:textAlignment="center" />
 
 
@@ -351,7 +351,7 @@
                                     android:id="@+id/textView4"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="plans"
+                                    android:text="Trips"
                                     android:textAlignment="center" />
 
 

@@ -15,18 +15,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -414,9 +420,55 @@ public class GalleryActivity extends AppCompatActivity implements NavigationView
         else if (itemId == R.id.nav_share) {
             Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
         }
+        else if (itemId == R.id.nav_rate) {
+            setupRatingBox();
+            return true;
+
+        }
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+
+
+    public void setupRatingBox() {
+        // Create the Dialog here
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.rate);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.elements));
+        }
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+        // Initialize Views
+        Button submitButton = dialog.findViewById(R.id.btn);
+        RatingBar ratingBar = dialog.findViewById(R.id.rb);
+        Button Cancel = dialog.findViewById(R.id.btn_cancel);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                float rating = ratingBar.getRating();
+                String data = String.valueOf(rating);
+                Toast.makeText(getApplicationContext(), data + " star", Toast.LENGTH_SHORT).show();
+                dialog.dismiss(); // Dismiss the dialog after submitting the rating
+            }
+        });
+
+        Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(GalleryActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }

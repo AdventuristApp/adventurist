@@ -174,7 +174,6 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
             Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
         }
         else if (itemId == R.id.nav_rate) {
-            Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
             setupRatingBox();
             return true;
 
@@ -264,7 +263,7 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         profileName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(adventureMainActivity.this, TEST.class);
+                Intent intent1 = new Intent(adventureMainActivity.this, ProfileActivity.class);
                 startActivity(intent1);
             }
         });
