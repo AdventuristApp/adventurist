@@ -1,12 +1,14 @@
 package com.adventurist.adventurist;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -27,6 +29,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.adventurist.adventurist.databinding.ActivityGoogleMapBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -214,20 +217,60 @@ public class googleMap extends FragmentActivity implements OnMapReadyCallback {
                 double lng = location.getDouble("lng");
                 LatLng hospitalLatLng = new LatLng(lat, lng);
                 Log.d("Hospital", "Hospital Name: " + name + " LatLng: " + hospitalLatLng.toString());
-                if (mMap != null) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mMap.addMarker(new MarkerOptions().position(hospitalLatLng).title(name));
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (mMap != null) {
+                            Marker marker = mMap.addMarker(new MarkerOptions().position(hospitalLatLng).title(name));
+                            marker.setTag(name);
+                            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                @Override
+                                public boolean onMarkerClick(Marker marker) {
+                                    String name = (String) marker.getTag();
+                                    if (name != null) {
+                                        showAddToListDialog(name);
+                                        return true;
+                                    }
+                                    return false;
+                                }
+                            });
+                        } else {
+                            Log.e("Hospital", "mMap is null");
                         }
-                    });
-                } else {
-                    Log.e("Hospital", "mMap is null");
-                }
+                    }
+                });
             }
+
+            // Set a single marker click listener for the entire map
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+    private void showAddToListDialog(String name) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        Intent locationName = new Intent(this, PlanActivity.class);
+        builder.setTitle(name)
+                .setMessage("Do you want to add this location to your list?")
+
+                .setPositiveButton("Add to Hotels", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        locationName.putExtra("locationName",name);
+                        startActivity(locationName);
+                    }
+                })
+
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 
