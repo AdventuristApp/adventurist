@@ -25,7 +25,8 @@
         "adventurist": {}
       },
       "geo": {
-        "adventureMap": {}
+        "adventureMap": {},
+        "adventureLocationSearch": {}
       }
     }
   }

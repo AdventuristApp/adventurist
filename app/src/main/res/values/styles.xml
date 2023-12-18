@@ -7,4 +7,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">#000000</item>
     </style>
+
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Customize attributes here -->
+        <item name="android:background">#DDE6ED</item>
+        <item name="android:textColor">@color/black</item>
+        <!-- Add more customizations as needed -->
+    </style>
 </resources>

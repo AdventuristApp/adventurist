@@ -13,7 +13,7 @@ type Images @model @auth(rules: [{ allow: public }]) {
   taskImageS3Key: String!
 }
 
-type Plan @model @auth(rules: [{allow: public}]){
+type Plan @model @auth(rules: [{ allow: public }]) {
   id: ID!
   planName: String!
   numberOfDays: Int!

@@ -1,124 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPlanActivity">
+    tools:context=".AddPlanActivity"
+    android:background="@drawable/ghofran_gg">
 
-    <EditText
-        android:id="@+id/addPlanName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="584dp"
-        android:ems="10"
-        android:hint="Add Your Plane Name"
-        android:inputType="text"
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/planNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Plan Name"
-        app:layout_constraintBottom_toTopOf="@+id/addPlanName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.698" />
+        app:layout_constraintVertical_bias="0.443">
 
-    <TextView
-        android:id="@+id/daysText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Number Of Days"
-        app:layout_constraintBottom_toTopOf="@+id/addNumberOfDays"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/white_background">
 
-    <EditText
-        android:id="@+id/addNumberOfDays"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="460dp"
-        android:ems="10"
-        android:hint="Put the Number Of Days"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/planNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plan Name"
+            android:layout_marginBottom="10dp"/>
 
-    <TextView
-        android:id="@+id/DestinationText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Destination"
-        app:layout_constraintBottom_toTopOf="@+id/addDestination"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.996" />
+        <EditText
+            android:id="@+id/addPlanName"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:ems="10"
+            android:inputType="text"
+            android:gravity="center_vertical|start"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/edittext_background" />
 
-    <EditText
-        android:id="@+id/addDestination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="320dp"
-        android:ems="10"
-        android:hint="Your Destination"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/daysText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number Of Days"
+            android:layout_marginBottom="10dp"/>
 
-    <TextView
-        android:id="@+id/Budget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Budget"
-        app:layout_constraintBottom_toTopOf="@+id/addBudget"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        <EditText
+            android:id="@+id/addNumberOfDays"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:ems="10"
+            android:inputType="text"
+            android:gravity="center_vertical|start"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/edittext_background" />
 
-    <EditText
-        android:id="@+id/addBudget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
-        android:ems="10"
-        android:hint="Put Your Budget"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/DestinationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Destination"
+            android:layout_marginBottom="10dp"/>
 
-    <Button
-        android:id="@+id/addPlanButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Plan"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.937" />
+        <EditText
+            android:id="@+id/addDestination"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:ems="10"
+            android:inputType="text"
+            android:gravity="center_vertical|start"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/edittext_background" />
+
+        <TextView
+            android:id="@+id/Budget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Budget"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/addBudget"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:ems="10"
+            android:inputType="text"
+            android:gravity="center_vertical|start"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/edittext_background"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="18dp">
+
+            <Button
+                android:id="@+id/goBackToPlansPage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#526D82"
+                android:text="Go Back"
+                android:textColor="#DDE6ED"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/addPlanButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:backgroundTint="#526D82"
+                android:text="Add Plan"
+                android:textColor="#DDE6ED"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
