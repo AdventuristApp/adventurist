@@ -2,6 +2,7 @@ package com.adventurist.adventurist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -21,6 +22,7 @@ public class AddPlanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_plan);
         setUpAddPlanButton();
+        goBackToPlanPage();
     }
 
     private void setUpAddPlanButton(){
@@ -57,6 +59,15 @@ public class AddPlanActivity extends AppCompatActivity {
             } else Log.e(TAG, "User is not authenticated");
 
             snackbar.show();
+        });
+    }
+
+
+    private void goBackToPlanPage(){
+        Button goBack = findViewById(R.id.goBackToPlansPage);
+        goBack.setOnClickListener(v -> {
+            Intent goBackToPlanIntent = new Intent(this, PlanActivity.class);
+            startActivity(goBackToPlanIntent);
         });
     }
 }
