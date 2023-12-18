@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">adventurist</string>
     <string name="todo">TODO</string>
@@ -24,6 +25,21 @@
     <string name="navigation_drawer_open">open navigation drawer</string>
     <string name="navigation_drawer_close">close navigation drawer</string>
     <string name="title_activity_google_maps">GoogleMapsActivity</string>
+
+
+
+    //Headings
+    <string name="heading_one"> Advenurist</string>
+    <string name="heading_two">Discover The World</string>
+    <string name="heading_three">Discover The World</string>
+    <string name="heading_fourth">Discover The World</string>
+
+    //Description
+    <string name="desc_one">Let\'s make memories and the best experience of each journey you make</string>
+    <string name="desc_two">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="desc_three">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="desc_fourth">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+
 
 
 </resources>

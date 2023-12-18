@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/travels"
+    android:background="@drawable/image"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/welcome"
-                android:textColor="@color/sea_blue"
+                android:textColor="@color/buttontext"
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
@@ -85,9 +85,9 @@
                 android:id="@+id/emailSignInField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
                 android:autofillHints="enter your email"
-                tools:ignore="LabelFor" />
+                android:inputType="textEmailAddress"
+                tools:ignore="LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <View
                 android:layout_width="wrap_content"
@@ -104,9 +104,9 @@
                 android:id="@+id/passwordSignInfield"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:autofillHints="Password"
-                tools:ignore="LabelFor" />
+                android:inputType="textPassword"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
             <View
@@ -117,7 +117,7 @@
                 android:id="@+id/loginBtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:backgroundTint="@color/sea_blue"
+                android:backgroundTint="@color/buttontext"
                 android:text="@string/login"
                 app:cornerRadius="32dp" />
 
@@ -136,7 +136,7 @@
                 android:id="@+id/signUpBtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:backgroundTint="@color/sea_blue"
+                android:backgroundTint="@color/buttontext"
                 android:text="@string/sign_up"
                 app:cornerRadius="32dp" />
 

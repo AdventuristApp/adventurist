@@ -10,6 +10,15 @@
     <color name="black_sob7i">#0A0D23</color>
     <color name="pink_sob7i">#F44149</color>
     <color name="colorAccent">#4DCCFb</color>
+
+    //onboarding colors
+    <color name="background">#F0F4F3</color>
+    <color name="buttontext">#50C2C9</color>
+    <color name="bluebasic">#32c6f1</color>
+
+    //indicator color
+    <color name="inactive">#C4C4C4</color>
+    <color name="active">#50C2C9</color>
 </resources>
 
 

@@ -10,14 +10,19 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 //import android.view.Vi
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,12 +40,19 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     Menu menu;
     TextView textView;
     public static final String TAG_PROFILE = "profileActivity";
+
+
+    //=========
+
+    private Dialog dialog;
+    private ImageView ShowDialog;
+    //=======
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
+        setupAlertcostumWindow();
 
         AuthUser authUser = Amplify.Auth.getCurrentUser();
         String username="";
@@ -123,7 +135,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         int itemId = item.getItemId();
         menu.findItem(R.id.nav_logout).setVisible(true);
         if (itemId == R.id.nav_home) {
-            Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+            Intent intent = new Intent(ProfileActivity.this, adventureMainActivity.class);
             startActivity(intent);
         } else if (itemId == R.id.nav_Hotels) {
             Intent intent = new Intent(ProfileActivity.this, ProfileActivity.class);
@@ -162,9 +174,104 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         else if (itemId == R.id.nav_share) {
             Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
         }
+        else if (itemId == R.id.nav_rate) {
+            setupRatingBox();
+            return true;
+
+        }
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
     }
+
+
+
+    public void setupAlertcostumWindow(){
+        ShowDialog = findViewById(R.id.setting);
+
+        //Create the Dialog here
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.custom_dialog_layout);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.elements));
+        }
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false); //Optional
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
+
+        Button Okay = dialog.findViewById(R.id.btn_okay);
+        Button Cancel = dialog.findViewById(R.id.btn_cancel);
+
+        Okay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent goToSignInIntent = new Intent(ProfileActivity.this, signInActivity.class);
+                startActivity(goToSignInIntent);
+
+                Toast.makeText(ProfileActivity.this, "Okay", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(ProfileActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+
+        ShowDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.show(); // Showing the dialog here
+            }
+        });
+
+
     }
+    public void setupRatingBox() {
+        // Create the Dialog here
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.rate);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.elements));
+        }
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+        // Initialize Views
+        Button submitButton = dialog.findViewById(R.id.btn);
+        RatingBar ratingBar = dialog.findViewById(R.id.rb);
+        Button Cancel = dialog.findViewById(R.id.btn_cancel);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                float rating = ratingBar.getRating();
+                String data = String.valueOf(rating);
+                Toast.makeText(getApplicationContext(), data + " star", Toast.LENGTH_SHORT).show();
+                dialog.dismiss(); // Dismiss the dialog after submitting the rating
+            }
+        });
+
+        Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(ProfileActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+}
+

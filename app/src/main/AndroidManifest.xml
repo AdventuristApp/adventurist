@@ -18,6 +18,7 @@
         android:theme="@style/Theme.Adventurist"
         tools:ignore="ObsoleteSdkInt"
         tools:targetApi="31">
+<<<<<<< HEAD
 
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -38,6 +39,11 @@
             android:name=".GoogleMapsActivity"
             android:exported="false"
             android:label="@string/title_activity_google_maps" />
+=======
+        <activity
+            android:name=".firstActivity"
+            android:exported="false" />
+>>>>>>> 0969c6d2aabb7740b75653dc332f9403b64f9a38
         <activity
             android:name=".PlanDetailsActivity"
             android:exported="false" />
