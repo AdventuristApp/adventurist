@@ -11,125 +11,120 @@
 
 
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view4"
-        android:layout_gravity="start"
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/main_menu" />
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view4"
+            android:layout_gravity="start"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            app:headerLayout="@layout/header"
+            app:menu="@menu/main_menu" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarGallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                tools:ignore="MissingConstraints" />
 
-        <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarGallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:ignore="MissingConstraints" />
-    <TextView
-        android:id="@+id/textViewGallery"
-        android:layout_width="282dp"
-        android:layout_height="45dp"
-        android:fontFamily="cursive"
-        android:text="Adventurist"
-        android:textColor="@color/white"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar2"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578"
-        tools:ignore="SpUsage" />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/imageRecyclerView"
-        android:layout_width="433dp"
-        android:layout_height="384dp"
-        android:layout_marginTop="148dp"
-        app:layout_constraintBottom_toTopOf="@+id/addImageClickable"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-3dp" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="100dp"
-        android:layout_height="56dp"
-        android:contentDescription="@string/todo"
-        android:padding="20dp"
-        app:srcCompat="@drawable/distribution"
-        tools:ignore="MissingConstraints,ImageContrastCheck"
-        tools:src="@tools:sample/avatars" />
-
-    <TextView
-
-        android:id="@+id/textView10"
-        android:layout_width="282dp"
-        android:layout_height="45dp"
-        android:fontFamily="cursive"
-        android:text="Adventurist"
-        android:textColor="@color/white"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar2"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578"
-        tools:ignore="SpUsage" />
-
-    <ImageView
-        android:id="@+id/addImageClickable"
-        android:layout_width="120dp"
-        android:layout_height="78dp"
-        android:layout_marginBottom="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/add_photo" />
+            <TextView
+                android:id="@+id/textViewGallery"
+                android:layout_width="282dp"
+                android:layout_height="45dp"
+                android:fontFamily="cursive"
+                android:text="Adventurist"
+                android:textColor="@color/white"
+                android:textSize="35dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+                app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+                app:layout_constraintHorizontal_bias="0.875"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.578"
+                tools:ignore="SpUsage" />
 
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="397dp"
-        android:layout_height="69dp"
-        android:fontFamily="cursive"
-        android:text="@string/save_your_memories"
-        android:textSize="45dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarGallery" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/imageRecyclerView"
+                android:layout_width="408dp"
+                android:layout_height="549dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                tools:ignore="MissingConstraints" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/buttontext"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+
+                android:id="@+id/textView10"
+                android:layout_width="282dp"
+                android:layout_height="45dp"
+                android:fontFamily="cursive"
+                android:text="Adventurist"
+                android:textColor="@color/white"
+                android:textSize="35dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+                app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+                app:layout_constraintHorizontal_bias="0.875"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.578"
+                tools:ignore="SpUsage" />
+
+
+            <ImageView
+                android:id="@+id/addImageClickable"
+                android:layout_width="78dp"
+                android:layout_height="58dp"
+                android:layout_marginBottom="18dp"
+                app:layout_constraintBottom_toTopOf="@+id/imageRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/add" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="415dp"
+                android:layout_height="124dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="     save your memories"
+                android:textSize="40dp"
+
+                app:layout_constraintBottom_toTopOf="@+id/imageRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbarGallery"
+                app:layout_constraintVertical_bias="0.533" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>

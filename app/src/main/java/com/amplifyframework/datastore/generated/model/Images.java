@@ -1,7 +1,9 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
-import java.util.List;
+
+
+
 import java.util.UUID;
 import java.util.Objects;
 
@@ -20,7 +22,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Images type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Images", authRules = {
+@ModelConfig(pluralName = "Images",  authRules = {
   @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 public final class Images implements Model {
@@ -181,5 +183,7 @@ public final class Images implements Model {
   }
   
 
+
+  }
   
-}
+

@@ -1,66 +1,65 @@
 package com.adventurist.adventurist;
 
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 
-import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amplifyframework.api.graphql.model.ModelMutation;
-import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.adventurist.adventurist.Fragments.weatherapi;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Location;
-import com.amplifyframework.geo.models.Coordinates;
-import com.amplifyframework.geo.models.CountryCode;
-import com.amplifyframework.geo.models.Place;
-import com.amplifyframework.geo.models.SearchArea;
-import com.amplifyframework.geo.options.GeoSearchByCoordinatesOptions;
-import com.amplifyframework.geo.options.GeoSearchByTextOptions;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.material.navigation.NavigationView;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class adventureMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
-    private FusedLocationProviderClient fusedLocationClient;
-    private Geocoder geocoder;
+
+    EditText et;
+    TextView tv;
+    String url = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}";
+    String apikey = "a66f2f468eda4be91f3d4b46e63a34c4";
+    LocationManager manager;
+    LocationListener locationListener;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
     TextView textView;
-    AuthUser authUser = Amplify.Auth.getCurrentUser();
     public static final String TAG_ADVENTURE = "profileActivity";
+
+    private Dialog dialog;
+    private ImageView ShowDialog;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -68,17 +67,12 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adventure_main);
         setUpButtonsAndclickableImage();
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        geocoder = new Geocoder(this, Locale.getDefault());
+//        goToPlaneActivity2();
 
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    LOCATION_PERMISSION_REQUEST_CODE);
-        } else {
-            fetchLocation();
-        }
+        et = findViewById(R.id.et);
+        tv = findViewById(R.id.tv);
+
+        AuthUser authUser = Amplify.Auth.getCurrentUser();
         if (authUser != null) {
             String username = "";
             username = authUser.getUsername();
@@ -104,7 +98,6 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
                         Log.i(TAG_ADVENTURE, "Fetch user attributes failed: " + failure.toString());
                     }
             );
-            getUserNearestPlaces();
         }
 
 
@@ -115,7 +108,14 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         textView = findViewById(R.id.textView);
         toolbar = findViewById(R.id.toolbar2);
         navigationView.bringToFront();
-
+        TextView mapText = findViewById(R.id.mapText);
+        Intent goToMap = new Intent(this, googleMap.class);
+        mapText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(goToMap);
+            }
+        });
         ActionBarDrawerToggle toggle = new
                 ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -127,7 +127,7 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         menu = navigationView.getMenu();
         menu.findItem(R.id.nav_logout).setVisible(true);
         menu.findItem(R.id.nav_profile).setVisible(true);
-
+        /*-----------------------------------------------------------------------*/
 
     }
 
@@ -147,7 +147,7 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         int itemId = menuItem.getItemId();
         menu.findItem(R.id.nav_logout).setVisible(true);
         if (itemId == R.id.nav_home) {
-            Intent intent = new Intent(adventureMainActivity.this, MainActivity.class);
+            Intent intent = new Intent(adventureMainActivity.this, adventureMainActivity.class);
             startActivity(intent);
         } else if (itemId == R.id.nav_Hotels) {
             Intent intent = new Intent(adventureMainActivity.this, ProfileActivity.class);
@@ -180,6 +180,11 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         } else if (itemId == R.id.nav_share) {
             Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
         }
+        else if (itemId == R.id.nav_rate) {
+            setupRatingBox();
+            return true;
+
+        }
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
@@ -190,6 +195,7 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
 
     protected void onResume() {
         super.onResume();
+
 
     }
 
@@ -221,14 +227,15 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
 
     public void setUpButtonsAndclickableImage() {
 
-        ImageView Trips = findViewById(R.id.imageTrips);
-        Trips.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent1 = new Intent(adventureMainActivity.this, MainActivity.class);
-                startActivity(intent1);
-            }
-        });
+    ImageView planeButton = findViewById(R.id.imageplans);
+    planeButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent1 = new Intent(adventureMainActivity.this, PlanActivity.class);
+            startActivity(intent1);
+        }
+    });
+
 
         ImageView Hotels = findViewById(R.id.imageHotels);
         Hotels.setOnClickListener(new View.OnClickListener() {
@@ -262,83 +269,85 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         profileName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(adventureMainActivity.this, TEST.class);
+                Intent intent1 = new Intent(adventureMainActivity.this, ProfileActivity.class);
                 startActivity(intent1);
             }
         });
 
     }
 
-    private void fetchLocation() {
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, location -> {
-                    if (location != null) {
-                        double latitude = location.getLatitude();
-                        double longitude = location.getLongitude();
-                        performReverseGeocoding(latitude, longitude);
-                    }
-                });
-    }
 
-    private void performReverseGeocoding(double latitude, double longitude) {
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses != null && addresses.size() > 0) {
-                Address address = addresses.get(0);
-                String city = address.getLocality();
-                String country = address.getCountryName();
-                String fullAddress = city + ", " + country;
-                TextView locationTXT = findViewById(R.id.location_text);
-                locationTXT.setText(fullAddress);
-                Location loc = Location.builder().longitude(String.valueOf(longitude)).latitude(String.valueOf(latitude)).id(authUser.getUserId()).city(city).country(country).build();
-                Amplify.API.mutate(
-                        ModelMutation.create(loc),
-                        successRes -> Log.i("location", "Creating a plan successfully" + loc),
-                        failureRes -> Log.e("location", "Failed with this res: " + failureRes)
-                );
-                Log.d("Location", "User is in: " + fullAddress);
+    public void getweather(View v) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.openweathermap.org/data/2.5/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        weatherapi myapi = retrofit.create(weatherapi.class);
+        Call<weather> examplecall = myapi.getweather(et.getText().toString().trim(), apikey);
+        examplecall.enqueue(new Callback<weather>() {
+            @Override
+            public void onResponse(Call<weather> call, Response<weather> response) {
+                if (response.code() == 404) {
+                    Toast.makeText(adventureMainActivity.this, "Please Enter a valid City", Toast.LENGTH_LONG).show();
+                } else if (!(response.isSuccessful())) {
+                    Toast.makeText(adventureMainActivity.this, response.code() + " ", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                weather mydata = response.body();
+                mainWeatherClass main = mydata.getMain();
+                Double temp = main.getTemp();
+                Integer temperature = (int) (temp - 273.15);
+                tv.setText(String.valueOf(temperature) + "C");
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                fetchLocation();
+            @Override
+            public void onFailure(Call<weather> call, Throwable t) {
+                Toast.makeText(adventureMainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
-        }
-    }
+        });
 
-    private void getUserNearestPlaces() {
-        List<Location> locations = new ArrayList<>();
-        Amplify.API.query(
-                ModelQuery.get(Location.class, authUser.getUserId()),
-                success -> {
-                    locations.add(success.getData());
-                    Log.i("location", "getUserNearestPlaces: " + locations);
-                    fetchUserNearestPlaces(locations);
-                },
-                fail -> Log.i("location", "Did not read location"));
 
     }
-    private void fetchUserNearestPlaces(List<Location> locations) {
-        if (!locations.isEmpty()) {
-            Coordinates position = new Coordinates(Double.parseDouble(locations.get(0).getLatitude()), Double.parseDouble(locations.get(0).getLongitude()));
-            GeoSearchByCoordinatesOptions options = GeoSearchByCoordinatesOptions.builder()
-                    .maxResults(10).build();
-            Amplify.Geo.searchByCoordinates(position,options,
-                    result -> {
-                        for (final Place place : result.getPlaces()
-                        ) {
-                            Log.i("location", place.toString());
-                        }
-                    }, error -> Log.e("location", "Failed to reverse geocode " + position, error));
-        } else {
-            Log.e("location", "Locations list is empty" + locations);
+
+
+    public void setupRatingBox() {
+        // Create the Dialog here
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.rate);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.elements));
         }
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+        // Initialize Views
+        Button submitButton = dialog.findViewById(R.id.btn);
+        RatingBar ratingBar = dialog.findViewById(R.id.rb);
+        Button Cancel = dialog.findViewById(R.id.btn_cancel);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                float rating = ratingBar.getRating();
+                String data = String.valueOf(rating);
+                Toast.makeText(getApplicationContext(), data + " star", Toast.LENGTH_SHORT).show();
+                dialog.dismiss(); // Dismiss the dialog after submitting the rating
+            }
+        });
+
+        Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(adventureMainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
+
+
 }
