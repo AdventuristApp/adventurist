@@ -11,17 +11,22 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,13 +57,18 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
     Menu menu;
     TextView textView;
     public static final String TAG_ADVENTURE = "profileActivity";
+
+    private Dialog dialog;
+    private ImageView ShowDialog;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adventure_main);
         setUpButtonsAndclickableImage();
-//        getweather(View);
+//        goToPlaneActivity2();
+
         et = findViewById(R.id.et);
         tv = findViewById(R.id.tv);
 
@@ -110,21 +120,19 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         menu = navigationView.getMenu();
         menu.findItem(R.id.nav_logout).setVisible(true);
         menu.findItem(R.id.nav_profile).setVisible(true);
-/*-----------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------*/
 
     }
 
 
     @Override
-    public void onBackPressed(){
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else
-        {super.onBackPressed();
+        } else {
+            super.onBackPressed();
         }
     }
-
 
 
     @SuppressLint("NonConstantResourceId")
@@ -132,25 +140,20 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         int itemId = menuItem.getItemId();
         menu.findItem(R.id.nav_logout).setVisible(true);
         if (itemId == R.id.nav_home) {
-            Intent intent = new Intent(adventureMainActivity.this, MainActivity.class);
+            Intent intent = new Intent(adventureMainActivity.this, adventureMainActivity.class);
             startActivity(intent);
         } else if (itemId == R.id.nav_Hotels) {
             Intent intent = new Intent(adventureMainActivity.this, ProfileActivity.class);
             startActivity(intent);
-        }
-
-        else if (itemId == R.id.nav_profile) {
+        } else if (itemId == R.id.nav_profile) {
             Intent intent = new Intent(adventureMainActivity.this, ProfileActivity.class);
             startActivity(intent);
-        }
-
-
-         else if (itemId == R.id.nav_logout) {
+        } else if (itemId == R.id.nav_logout) {
             menu.findItem(R.id.nav_logout).setVisible(true);
             menu.findItem(R.id.nav_profile).setVisible(true);
             menu.findItem(R.id.nav_Gallery).setVisible(true);
 
-            Amplify.Auth.signOut(()->{
+            Amplify.Auth.signOut(() -> {
                         Log.i(TAG_ADVENTURE, "Log Out Succeeded :D");
                         runOnUiThread(() -> {
 //                            ((TextView)findViewById(R.id.usernameTextView)).setText("");
@@ -166,10 +169,15 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
                     });
         } else if (itemId == R.id.nav_Gallery) {
             Intent intent = new Intent(adventureMainActivity.this, GalleryActivity.class);
-            startActivity(intent);}
-
-        else if (itemId == R.id.nav_share) {
+            startActivity(intent);
+        } else if (itemId == R.id.nav_share) {
             Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+        }
+        else if (itemId == R.id.nav_rate) {
+            Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+            setupRatingBox();
+            return true;
+
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -183,9 +191,8 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         super.onResume();
 
 
-
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.botton_nav, menu);
@@ -212,58 +219,57 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
     }
 
 
+    public void setUpButtonsAndclickableImage() {
 
-    public void setUpButtonsAndclickableImage(){
-
-    ImageView Trips = findViewById(R.id.imageTrips);
-    Trips.setOnClickListener(new View.OnClickListener() {
+    ImageView planeButton = findViewById(R.id.imageplans);
+    planeButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent1 = new Intent(adventureMainActivity.this, MainActivity.class);
-            startActivity(intent1);
-        }
-    });
-
-    ImageView Hotels = findViewById(R.id.imageHotels);
-    Hotels.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent1 = new Intent(adventureMainActivity.this, MainActivity.class);
-            startActivity(intent1);
-        }
-    });
-
-    ImageView Places = findViewById(R.id.GalleryImageView);
-    Places.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent1 = new Intent(adventureMainActivity.this, MainActivity.class);
-            startActivity(intent1);
-        }
-    });
-
-    ImageView profileImage = findViewById(R.id.profileImage);
-    profileImage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent1 = new Intent(adventureMainActivity.this, ProfileActivity.class);
+            Intent intent1 = new Intent(adventureMainActivity.this, PlanActivity.class);
             startActivity(intent1);
         }
     });
 
 
 
-    TextView profileName = findViewById(R.id.NICENAME);
-    profileName.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent1 = new Intent(adventureMainActivity.this, TEST.class);
-            startActivity(intent1);
-        }
-    });
+        ImageView Hotels = findViewById(R.id.imageHotels);
+        Hotels.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(adventureMainActivity.this, MainActivity.class);
+                startActivity(intent1);
+            }
+        });
 
-}
+        ImageView Places = findViewById(R.id.GalleryImageView);
+        Places.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(adventureMainActivity.this, MainActivity.class);
+                startActivity(intent1);
+            }
+        });
 
+        ImageView profileImage = findViewById(R.id.profileImage);
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(adventureMainActivity.this, ProfileActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+
+        TextView profileName = findViewById(R.id.NICENAME);
+        profileName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(adventureMainActivity.this, TEST.class);
+                startActivity(intent1);
+            }
+        });
+
+    }
 
 
     public void getweather(View v) {
@@ -297,4 +303,55 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
 
 
     }
+
+
+//    public void goToPlaneActivity2(View view) {
+//        ImageView planeButton =  findViewById(R.id.imageplans);
+//        planeButton.setOnClickListener(v -> {
+//            Intent goToPlaneIntent = new Intent(this, PlanActivity.class);
+//            startActivity(goToPlaneIntent);
+//        });
+//    }
+//}
+
+    public void setupRatingBox() {
+        // Create the Dialog here
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.rate);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.elements));
+        }
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+        // Initialize Views
+        Button submitButton = dialog.findViewById(R.id.btn);
+        RatingBar ratingBar = dialog.findViewById(R.id.rb);
+        Button Cancel = dialog.findViewById(R.id.btn_cancel);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                float rating = ratingBar.getRating();
+                String data = String.valueOf(rating);
+                Toast.makeText(getApplicationContext(), data + " star", Toast.LENGTH_SHORT).show();
+                dialog.dismiss(); // Dismiss the dialog after submitting the rating
+            }
+        });
+
+        Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(adventureMainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+
 }

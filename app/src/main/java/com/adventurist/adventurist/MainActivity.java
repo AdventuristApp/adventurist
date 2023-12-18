@@ -241,12 +241,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToSignInIntent);
         });
 
-        Button signupButton = (Button) findViewById(R.id.signUpMain);
-        signupButton.setOnClickListener(v -> {
-
-                    Intent goToSignUpIntent = new Intent(this, SignUpActivity.class);
-                    startActivity(goToSignUpIntent);
-                });
+//        Button signupButton = (Button) findViewById(R.id.signUpMain);
+//        signupButton.setOnClickListener(v -> {
+//
+//                    Intent goToSignUpIntent = new Intent(this, SignUpActivity.class);
+//                    startActivity(goToSignUpIntent);
+//                });
 //            Amplify.Auth.signOut(() -> {
 //                        Log.i(TAG, "Log Out Succeeded :D");
 //                        runOnUiThread(() -> {

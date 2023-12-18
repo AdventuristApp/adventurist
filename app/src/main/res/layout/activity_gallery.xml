@@ -72,20 +72,10 @@
                 android:id="@+id/toolbar2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/blue"
+                android:background="@color/buttontext"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 tools:ignore="MissingConstraints" />
-
-            <ImageView
-                android:id="@+id/imageView12"
-                android:layout_width="100dp"
-                android:layout_height="56dp"
-                android:contentDescription="@string/todo"
-                android:padding="20dp"
-                app:srcCompat="@drawable/distribution"
-                tools:ignore="MissingConstraints,ImageContrastCheck"
-                tools:src="@tools:sample/avatars" />
 
             <TextView
 

@@ -322,13 +322,6 @@ public class GalleryActivity extends AppCompatActivity implements NavigationView
     }
 
 
-//        // Save to DynamoDB
-//        Amplify.API.mutate(
-//                imageModel,
-//                ModelQuery.get(Images.class, Main_ID_TAG),
-//                response -> Log.i(TAG, "Saved to DynamoDB: " + response.getData().getId()),
-//                error -> Log.e(TAG, "Error saving to DynamoDB", error)
-//        );
 
 
 
@@ -382,7 +375,7 @@ public class GalleryActivity extends AppCompatActivity implements NavigationView
         int itemId = item.getItemId();
         menu.findItem(R.id.nav_logout).setVisible(true);
         if (itemId == R.id.nav_home) {
-            Intent intent = new Intent(GalleryActivity.this, MainActivity.class);
+            Intent intent = new Intent(GalleryActivity.this, adventureMainActivity.class);
             startActivity(intent);
         } else if (itemId == R.id.nav_Hotels) {
             Intent intent = new Intent(GalleryActivity.this, ProfileActivity.class);

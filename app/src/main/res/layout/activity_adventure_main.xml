@@ -40,7 +40,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="297dp"
                     android:background="@color/buttontext">
 
 
@@ -87,8 +87,8 @@
 
                     <ImageView
                         android:id="@+id/profileImage"
-                        android:layout_width="111dp"
-                        android:layout_height="79dp"
+                        android:layout_width="80dp"
+                        android:layout_height="65dp"
                         android:layout_marginStart="35dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginEnd="14dp"
@@ -96,8 +96,10 @@
                         android:src="@drawable/profile"
                         app:layout_constraintBottom_toTopOf="@+id/textView13"
                         app:layout_constraintEnd_toStartOf="@+id/NICENAME"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+                        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+                        app:layout_constraintVertical_bias="0.1" />
 
                     <TextView
                         android:id="@+id/textView8"
@@ -129,29 +131,28 @@
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.909"
+                        app:layout_constraintHorizontal_bias="0.698"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.432"
+                        app:layout_constraintVertical_bias="0.356"
                         tools:ignore="HardcodedText" />
-
 
                     <TextView
                         android:id="@+id/textView13"
                         android:layout_width="342dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="53dp"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginEnd="62dp"
                         android:fontFamily="sans-serif-condensed"
                         android:text="@string/let_us_discover_the_world"
                         android:textColor="@android:color/white"
                         android:textSize="25dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/SearchPaces"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.76"
+                        app:layout_constraintVertical_bias="0.593"
                         tools:ignore="SpUsage" />
 
                     <EditText
@@ -172,8 +173,10 @@
                         android:textSize="13dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.325"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView13"
+                        app:layout_constraintVertical_bias="0.0"
                         tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
 
 
@@ -198,8 +201,8 @@
 
                     <LinearLayout
                         android:id="@+id/horizantal"
-                        android:layout_width="412dp"
-                        android:layout_height="149dp"
+                        android:layout_width="411dp"
+                        android:layout_height="146dp"
                         android:gravity="center"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -229,7 +232,7 @@
 
 
                                     <ImageView
-                                        android:id="@+id/imageTrips"
+                                        android:id="@+id/imageplans"
                                         android:layout_width="41dp"
                                         android:layout_height="38dp"
                                         android:layout_marginStart="10dp"
@@ -357,10 +360,11 @@
                     </LinearLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="271dp"
-                        android:layout_height="124dp"
-                        android:layout_marginEnd="140dp"
-                        android:layout_marginBottom="136dp"
+                        android:layout_width="369dp"
+                        android:layout_height="111dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="26dp"
+                        android:layout_marginBottom="149dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -389,19 +393,6 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView5"
                             tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
 
-                        <TextView
-                            android:id="@+id/tv"
-                            android:layout_width="59dp"
-                            android:layout_height="43dp"
-                            android:gravity="center_horizontal"
-                            android:textSize="30sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.952"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView6"
-                            app:layout_constraintVertical_bias="0.987" />
-
                         <Button
                             android:id="@+id/getweather"
                             android:layout_width="65dp"
@@ -415,8 +406,11 @@
                             android:text="Get Weather"
                             app:layout_constraintBottom_toTopOf="@+id/tv"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toEndOf="@+id/et"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                         <TextView
                             android:id="@+id/textView5"
@@ -430,8 +424,26 @@
                             android:textSize="20dp"
                             app:layout_constraintBottom_toTopOf="@+id/getweather"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <TextView
+                            android:id="@+id/tv"
+                            android:layout_width="59dp"
+                            android:layout_height="43dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginEnd="31dp"
+                            android:layout_marginBottom="27dp"
+                            android:gravity="center_horizontal"
+                            android:textSize="30sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/getweather"
+                            app:layout_constraintTop_toBottomOf="@+id/textView5"
+                            tools:ignore="NotSibling" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

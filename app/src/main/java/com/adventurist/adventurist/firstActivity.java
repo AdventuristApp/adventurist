@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -189,11 +190,11 @@ public class firstActivity extends AppCompatActivity {
         });
     }
 
-    public void goToPlaneActivity(View view) {
-        Button planeButton = (Button) findViewById(R.id.planeButton);
-        planeButton.setOnClickListener(v -> {
-            Intent goToPlaneIntent = new Intent(this, PlanActivity.class);
-            startActivity(goToPlaneIntent);
-        });
-    }
+//    public void goToPlaneActivity(View view) {
+//        ImageView planeButton =  findViewById(R.id.imageplans);
+//        planeButton.setOnClickListener(v -> {
+//            Intent goToPlaneIntent = new Intent(this, PlanActivity.class);
+//            startActivity(goToPlaneIntent);
+//        });
+//    }
 }
