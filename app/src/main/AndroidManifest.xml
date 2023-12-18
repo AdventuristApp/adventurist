@@ -39,7 +39,13 @@
         <activity
             android:name=".googleMap"
             android:exported="false"
+
             android:label="@string/title_activity_google_map" />
+
+        <activity
+            android:name=".firstActivity"
+            android:exported="false" />
+
         <activity
             android:name=".PlanDetailsActivity"
             android:exported="false" />

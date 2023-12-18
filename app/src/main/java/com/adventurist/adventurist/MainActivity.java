@@ -1,21 +1,24 @@
 package com.adventurist.adventurist;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.adventurist.adventurist.Fragments.weatherapi;
+import com.adventurist.adventurist.MainActivity;
+import com.adventurist.adventurist.adapter.ViewPagerAdapter;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.core.Amplify;
@@ -26,14 +29,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.channels.InterruptedByTimeoutException;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 public class MainActivity extends AppCompatActivity {
-
     EditText et;
     TextView tv;
     String url = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}";
@@ -44,12 +40,22 @@ public class MainActivity extends AppCompatActivity {
     AuthUser authUser = null;
 
 
+    ViewPager mSLideViewPager;
+    LinearLayout mDotLayout;
+    Button backbtn, nextbtn, skipbtn;
+
+    TextView[] dots;
+    ViewPagerAdapter viewPagerAdapter;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setUpSignInAndSignOutButtons();
+
+
+
+                setUpSignInAndSignOutButtons();
         String emptyFilename = "emptyTestFileName";
         File emptyFile = new File(getApplicationContext().getFilesDir(), emptyFilename);
         try {
@@ -72,134 +78,194 @@ public class MainActivity extends AppCompatActivity {
                     Log.i(TAG, "S3 upload failed! " + failure.getMessage());
                 }
         );
-        Intent gotoMap = new Intent(this, googleMap.class);
- findViewById(R.id.googleMap).setOnClickListener(new View.OnClickListener() {
-     @Override
-     public void onClick(View v) {
-         startActivity(gotoMap);
-     }
- });
-        Button goHome = findViewById(R.id.goHome);
-        goHome.setOnClickListener(new View.OnClickListener() {
+
+
+        backbtn = findViewById(R.id.backbtn);
+        nextbtn = findViewById(R.id.nextbtn);
+
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent1 = new Intent(MainActivity.this, adventureMainActivity.class);
-                startActivity(intent1);
-            }
-        });
+            public void onClick(View v) {
 
+                if (getitem(0) > 0){
 
-        et = findViewById(R.id.et);
-        tv = findViewById(R.id.tv);
+                    mSLideViewPager.setCurrentItem(getitem(-1),true);
 
-    }
-
-    public void getweather(View v) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.openweathermap.org/data/2.5/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        weatherapi myapi = retrofit.create(weatherapi.class);
-        Call<weather> examplecall = myapi.getweather(et.getText().toString().trim(), apikey);
-        examplecall.enqueue(new Callback<weather>() {
-            @Override
-            public void onResponse(Call<weather> call, Response<weather> response) {
-                if (response.code() == 404) {
-                    Toast.makeText(MainActivity.this, "Please Enter a valid City", Toast.LENGTH_LONG).show();
-                } else if (!(response.isSuccessful())) {
-                    Toast.makeText(MainActivity.this, response.code() + " ", Toast.LENGTH_LONG).show();
-                    return;
                 }
-                weather mydata = response.body();
-                mainWeatherClass main = mydata.getMain();
-                Double temp = main.getTemp();
-                Integer temperature = (int) (temp - 273.15);
-                tv.setText(String.valueOf(temperature) + "C");
-            }
 
-            @Override
-            public void onFailure(Call<weather> call, Throwable t) {
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 
+        nextbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (getitem(0) < 3)
+                    mSLideViewPager.setCurrentItem(getitem(1),true);
+                else {
+
+                    Intent i = new Intent(MainActivity.this,firstActivity.class);
+                    startActivity(i);
+                    finish();
+
+                }
+
+            }
+        });
+
+//        skipbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//
+//                Intent i = new Intent(MainActivity.this,firstActivity.class);
+//                startActivity(i);
+////                finish();
+//
+//            }
+//        });
+
+        mSLideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
+        mDotLayout = (LinearLayout) findViewById(R.id.indicator_layout);
+
+        viewPagerAdapter = new ViewPagerAdapter(this);
+
+        mSLideViewPager.setAdapter(viewPagerAdapter);
+
+        setUpindicator(0);
+        mSLideViewPager.addOnPageChangeListener(viewListener);
 
     }
+
+    public void setUpindicator(int position){
+
+        dots = new TextView[4];
+        mDotLayout.removeAllViews();
+
+        for (int i = 0 ; i < dots.length ; i++){
+
+            dots[i] = new TextView(this);
+            dots[i].setText(Html.fromHtml("&#8226"));
+            dots[i].setTextSize(35);
+            dots[i].setTextColor(getResources().getColor(R.color.inactive,getApplicationContext().getTheme()));
+            mDotLayout.addView(dots[i]);
+
+        }
+
+        dots[position].setTextColor(getResources().getColor(R.color.active,getApplicationContext().getTheme()));
+
+    }
+
+    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+
+            setUpindicator(position);
+
+            if (position > 0){
+
+                backbtn.setVisibility(View.VISIBLE);
+
+            }else {
+
+                backbtn.setVisibility(View.INVISIBLE);
+
+            }
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
+
+    private int getitem(int i){
+
+        return mSLideViewPager.getCurrentItem() + i;
+    }
+
+
 
     @Override
     protected void onResume() {
         super.onResume();
-        authUser = Amplify.Auth.getCurrentUser();
-
-        String email = "";
-        if (authUser == null) {
-
-            Button signInButton = (Button) findViewById(R.id.signInMainActivity);
-            signInButton.setVisibility(View.VISIBLE);
-            Button signOutButton = (Button) findViewById(R.id.logOutMainActivity);
-            signOutButton.setVisibility(View.INVISIBLE);
-        } else {
-            email = authUser.getUsername();
-            Log.i(TAG, "User Email is: " + email);
-
-            Button signInButton = (Button) findViewById(R.id.signInMainActivity);
-            signInButton.setVisibility(View.INVISIBLE);
-
-            Button signOutButton = (Button) findViewById(R.id.logOutMainActivity);
-            signOutButton.setVisibility(View.VISIBLE);
-
-            String visibleUserEmail = email;
-            Amplify.Auth.fetchUserAttributes(
-                    success -> {
-                        Log.i(TAG, "Fetching user email: " + visibleUserEmail);
-                        for (AuthUserAttribute userAttribute : success) {
-                            if (userAttribute.getKey().getKeyString().equals("email")) {
-                                String userEmail = userAttribute.getValue();
-                                runOnUiThread(() -> {
-//                                    ((TextView) findViewById(R.id.usernameTextView)).setText(userEmail);
-                                });
-                            }
-                        }
-                    },
-                    fail -> {
-                        Log.i(TAG, "Fetching user email failed: " + fail.toString());
-                    }
-            );
-        }
+//        authUser = Amplify.Auth.getCurrentUser();
+//
+//        String email = "";
+//        if (authUser == null) {
+//
+//            Button signInButton = (Button) findViewById(R.id.signInMainActivity);
+//            signInButton.setVisibility(View.VISIBLE);
+//            Button signOutButton = (Button) findViewById(R.id.logOutMainActivity);
+//            signOutButton.setVisibility(View.INVISIBLE);
+//        } else {
+//            email = authUser.getUsername();
+//            Log.i(TAG, "User Email is: " + email);
+//
+//            Button signInButton = (Button) findViewById(R.id.signInMainActivity);
+//            signInButton.setVisibility(View.INVISIBLE);
+//
+//            Button signOutButton = (Button) findViewById(R.id.logOutMainActivity);
+//            signOutButton.setVisibility(View.VISIBLE);
+//
+//            String visibleUserEmail = email;
+//            Amplify.Auth.fetchUserAttributes(
+//                    success -> {
+//                        Log.i(TAG, "Fetching user email: " + visibleUserEmail);
+//                        for (AuthUserAttribute userAttribute : success) {
+//                            if (userAttribute.getKey().getKeyString().equals("email")) {
+//                                String userEmail = userAttribute.getValue();
+//                                runOnUiThread(() -> {
+////                                    ((TextView) findViewById(R.id.usernameTextView)).setText(userEmail);
+//                                });
+//                            }
+//                        }
+//                    },
+//                    fail -> {
+//                        Log.i(TAG, "Fetching user email failed: " + fail.toString());
+//                    }
+//            );
+//        }
     }
 
 
     private void setUpSignInAndSignOutButtons() {
-        Button signInButton = (Button) findViewById(R.id.signInMainActivity);
+        Button signInButton = (Button) findViewById(R.id.signInMain);
         signInButton.setOnClickListener(v -> {
             Intent goToSignInIntent = new Intent(this, signInActivity.class);
             startActivity(goToSignInIntent);
         });
 
-        Button signOutButton = (Button) findViewById(R.id.logOutMainActivity);
-        signOutButton.setOnClickListener(v -> {
-            Amplify.Auth.signOut(() -> {
-                        Log.i(TAG, "Log Out Succeeded :D");
-                        runOnUiThread(() -> {
-//                            ((TextView)findViewById(R.id.usernameTextView)).setText("");
-                        });
-                        Intent goToSignInIntent = new Intent(this, signInActivity.class);
-                        startActivity(goToSignInIntent);
-                    },
-                    fail -> {
-                        Log.i(TAG, "Log Out failed");
-                        runOnUiThread(() -> {
-                            Toast.makeText(this, "Log Out failed", Toast.LENGTH_LONG);
-                        });
-                    });
-        });
+//        Button signupButton = (Button) findViewById(R.id.signUpMain);
+//        signupButton.setOnClickListener(v -> {
+//
+//                    Intent goToSignUpIntent = new Intent(this, SignUpActivity.class);
+//                    startActivity(goToSignUpIntent);
+//                });
+//            Amplify.Auth.signOut(() -> {
+//                        Log.i(TAG, "Log Out Succeeded :D");
+//                        runOnUiThread(() -> {
+////                            ((TextView)findViewById(R.id.usernameTextView)).setText("");
+//                        });
+//                        Intent goToSignInIntent = new Intent(this, signInActivity.class);
+//                        startActivity(goToSignInIntent);
+//                    },
+//                    fail -> {
+//                        Log.i(TAG, "Log Out failed");
+//                        runOnUiThread(() -> {
+//                            Toast.makeText(this, "Log Out failed", Toast.LENGTH_LONG);
+//                        });
+//                    });
+//        });
     }
 
-    public void goToPlaneActivity(View view) {
-        Button planeButton = (Button) findViewById(R.id.planeButton);
-        planeButton.setOnClickListener(v -> {
-            Intent goToPlaneIntent = new Intent(this, PlanActivity.class);
-            startActivity(goToPlaneIntent);
-        });
-    }
+
+
 }
