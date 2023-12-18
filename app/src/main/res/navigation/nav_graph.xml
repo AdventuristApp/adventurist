@@ -19,9 +19,9 @@
         android:name="com.adventurist.adventurist.Fragments.settingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
-    <fragment
-        android:id="@+id/mapfragment"
-        android:name="com.adventurist.adventurist.mapfragment"
-        android:label="fragment_mapfragment"
-        tools:layout="@layout/fragment_mapfragment" />
+<!--    <fragment-->
+<!--        android:id="@+id/mapfragment"-->
+<!--        android:name="com.adventurist.adventurist.mapfragment"-->
+<!--        android:label="fragment_mapfragment"-->
+<!--        tools:layout="@layout/fragment_mapfragment" />-->
 </navigation>

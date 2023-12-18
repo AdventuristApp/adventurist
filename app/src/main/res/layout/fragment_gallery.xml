@@ -2,16 +2,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="250dp"
-    android:layout_height="300dp"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
     tools:context=".Fragments.galleryFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
     <ImageView
         android:id="@+id/imageFragment"
-        android:layout_width="230dp"
-        android:layout_height="290dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
         android:padding="8dp"
         android:scaleType="centerCrop"
@@ -19,9 +21,10 @@
 
     <ImageView
         android:id="@+id/delFragmentImage"
-        android:layout_width="21dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="230dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="17dp"
         android:src="@android:drawable/ic_menu_close_clear_cancel" />
 
 </FrameLayout>

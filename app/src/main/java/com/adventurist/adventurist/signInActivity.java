@@ -31,7 +31,7 @@ public class signInActivity extends AppCompatActivity {
 
             Amplify.Auth.signIn(email, password, success -> {
                 Log.i(TAG, "Login succeeded: " + success.toString());
-                Intent goToHomePage = new Intent(signInActivity.this, MainActivity.class);
+                Intent goToHomePage = new Intent(signInActivity.this, adventureMainActivity.class);
                 startActivity(goToHomePage);
             }, fail -> {
                 Log.i(TAG, "Login failed: " + fail.toString());
