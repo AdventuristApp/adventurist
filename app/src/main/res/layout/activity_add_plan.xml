@@ -109,10 +109,12 @@
                     android:layout_weight="1"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="8dp"
-                    android:backgroundTint="#526D82"
+                    android:backgroundTint="@color/addButtons"
                     android:text="Go Back"
                     android:textColor="#DDE6ED"
                     android:textStyle="bold" />
+
+<!--                this color : #526D82-->
 
                 <Button
                     android:id="@+id/addPlanButton"
@@ -121,7 +123,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="4dp"
-                    android:backgroundTint="#526D82"
+                    android:backgroundTint="@color/addButtons"
                     android:text="Add Plan"
                     android:textColor="#DDE6ED"
                     android:textStyle="bold" />

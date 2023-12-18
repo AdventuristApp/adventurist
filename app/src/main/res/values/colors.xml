@@ -19,6 +19,15 @@
     //indicator color
     <color name="inactive">#C4C4C4</color>
     <color name="active">#50C2C9</color>
+
+    //plan
+    <color name="plan_page">#DDE6ED</color>
+
+    //remove
+    <color name="removeIcon">#80870707</color>
+
+    //addButtons
+    <color name="addButtons">#408C96</color>
 </resources>
 
 
