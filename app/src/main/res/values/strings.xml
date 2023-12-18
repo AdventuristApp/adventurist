@@ -24,6 +24,9 @@
     <string name="navigation_drawer_open">open navigation drawer</string>
     <string name="navigation_drawer_close">close navigation drawer</string>
     <string name="title_activity_google_maps">GoogleMapsActivity</string>
+    <string name="mapsApi">AIzaSyBNR7_th2remU0Eb37Se16GME5ts3TuzcI</string>
+    <string name="title_activity_google_map">googleMap</string>
+    <string name="search_for_a_location">Search for a location</string>
 
 
 </resources>

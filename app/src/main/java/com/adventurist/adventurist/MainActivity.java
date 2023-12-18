@@ -24,6 +24,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.channels.InterruptedByTimeoutException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -71,8 +72,13 @@ public class MainActivity extends AppCompatActivity {
                     Log.i(TAG, "S3 upload failed! " + failure.getMessage());
                 }
         );
-
-
+        Intent gotoMap = new Intent(this, googleMap.class);
+ findViewById(R.id.googleMap).setOnClickListener(new View.OnClickListener() {
+     @Override
+     public void onClick(View v) {
+         startActivity(gotoMap);
+     }
+ });
         Button goHome = findViewById(R.id.goHome);
         goHome.setOnClickListener(new View.OnClickListener() {
             @Override
