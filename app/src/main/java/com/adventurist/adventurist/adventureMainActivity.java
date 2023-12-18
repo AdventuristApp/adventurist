@@ -108,7 +108,14 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         textView = findViewById(R.id.textView);
         toolbar = findViewById(R.id.toolbar2);
         navigationView.bringToFront();
-
+        TextView mapText = findViewById(R.id.mapText);
+        Intent goToMap = new Intent(this, googleMap.class);
+        mapText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(goToMap);
+            }
+        });
         ActionBarDrawerToggle toggle = new
                 ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -230,7 +237,6 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
     });
 
 
-
         ImageView Hotels = findViewById(R.id.imageHotels);
         Hotels.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -303,15 +309,6 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
 
     }
 
-
-//    public void goToPlaneActivity2(View view) {
-//        ImageView planeButton =  findViewById(R.id.imageplans);
-//        planeButton.setOnClickListener(v -> {
-//            Intent goToPlaneIntent = new Intent(this, PlanActivity.class);
-//            startActivity(goToPlaneIntent);
-//        });
-//    }
-//}
 
     public void setupRatingBox() {
         // Create the Dialog here

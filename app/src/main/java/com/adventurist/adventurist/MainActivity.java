@@ -27,6 +27,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.channels.InterruptedByTimeoutException;
 
 public class MainActivity extends AppCompatActivity {
     EditText et;
@@ -78,9 +79,10 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+
         backbtn = findViewById(R.id.backbtn);
         nextbtn = findViewById(R.id.nextbtn);
-//        skipbtn = findViewById(R.id.skipButton);
+
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
