@@ -3,6 +3,7 @@ package com.amplifyframework.datastore.generated.model;
 import com.amplifyframework.util.Immutable;
 import com.amplifyframework.core.model.Model;
 import com.amplifyframework.core.model.ModelProvider;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +13,7 @@ import java.util.Set;
  */
 
 public final class AmplifyModelProvider implements ModelProvider {
-  private static final String AMPLIFY_MODEL_VERSION = "85dfa343f32a8c4b98fa9fc8568f1d19";
+  private static final String AMPLIFY_MODEL_VERSION = "ac813d63094c74791813e83b9ad11120";
   private static AmplifyModelProvider amplifyGeneratedModelInstance;
   private AmplifyModelProvider() {
     
@@ -33,7 +34,7 @@ public final class AmplifyModelProvider implements ModelProvider {
   @Override
    public Set<Class<? extends Model>> models() {
     final Set<Class<? extends Model>> modifiableSet = new HashSet<>(
-          Arrays.<Class<? extends Model>>asList(Todo.class, Images.class, Plan.class, Location.class)
+          Arrays.<Class<? extends Model>>asList(Todo.class, Images.class, Plan.class, Location.class, Nearest.class)
         );
     
         return Immutable.of(modifiableSet);

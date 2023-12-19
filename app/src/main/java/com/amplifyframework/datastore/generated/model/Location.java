@@ -22,7 +22,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Location type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Locations", authRules = {
+@ModelConfig(pluralName = "Locations",  authRules = {
   @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 public final class Location implements Model {
