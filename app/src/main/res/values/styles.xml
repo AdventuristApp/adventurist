@@ -14,7 +14,7 @@
     </style>
 
     <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:background">#DDE6ED</item>
+        <item name="android:background">#9DB2BF</item>
         <item name="android:textColor">@color/black</item>
     </style>
 </resources>

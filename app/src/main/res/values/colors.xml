@@ -28,6 +28,8 @@
 
     //addButtons
     <color name="addButtons">#408C96</color>
+
+    <color name="detailsColor">#3366cc</color>
 </resources>
 
 
