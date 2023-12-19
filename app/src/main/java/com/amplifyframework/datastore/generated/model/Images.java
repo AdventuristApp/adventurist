@@ -3,7 +3,7 @@ package com.amplifyframework.datastore.generated.model;
 import com.amplifyframework.core.model.temporal.Temporal;
 
 
-
+import java.util.List;
 import java.util.UUID;
 import java.util.Objects;
 
@@ -184,6 +184,5 @@ public final class Images implements Model {
   
 
 
-  }
   
-
+}

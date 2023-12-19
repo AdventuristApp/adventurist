@@ -29,3 +29,12 @@ type Location @model @auth(rules: [{ allow: public }]) {
   country: String
   city: String
 }
+
+
+
+type Nearest @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  placeName: String!
+  userId: ID!
+  type : String
+}

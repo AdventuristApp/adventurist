@@ -19,8 +19,15 @@
         tools:ignore="ObsoleteSdkInt"
         tools:targetApi="31">
         <activity
-            android:name=".placeActivity"
+            android:name=".placesActivity"
             android:exported="false" />
+        <activity
+            android:name=".Resturants"
+            android:exported="false" />
+        <activity
+            android:name=".Hotels"
+            android:exported="false" />
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -39,13 +46,10 @@
         <activity
             android:name=".googleMap"
             android:exported="false"
-
             android:label="@string/title_activity_google_map" />
-
         <activity
             android:name=".firstActivity"
             android:exported="false" />
-
         <activity
             android:name=".PlanDetailsActivity"
             android:exported="false" />

@@ -30,7 +30,6 @@
     <string name="search_for_a_location">Search for a location</string>
 
 
-
     //Headings
     <string name="heading_one"> Advenurist</string>
     <string name="heading_two">Discover The World</string>
@@ -42,7 +41,7 @@
     <string name="desc_two">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="desc_three">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="desc_fourth">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
-
+    <string name="textview2">TextView2</string>
 
 
 </resources>

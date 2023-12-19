@@ -1,14 +1,12 @@
 package com.adventurist.adventurist;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -19,8 +17,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adventurist.adventurist.databinding.ActivityGoogleMapBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,7 +31,6 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.adventurist.adventurist.databinding.ActivityGoogleMapBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
@@ -45,6 +44,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+
+import pl.droidsonroids.gif.GifImageView;
 
 public class googleMap extends FragmentActivity implements OnMapReadyCallback {
 
@@ -195,7 +196,7 @@ public class googleMap extends FragmentActivity implements OnMapReadyCallback {
                         }
                         reader.close();
                         Log.i("Hospital", "run: " + response.toString());
-                        parseNearbyResponse(response.toString());
+                        parseNearbyResponse(response.toString(),type);
                     }
                     conn.disconnect();
                 } catch (Exception e) {
@@ -205,7 +206,7 @@ public class googleMap extends FragmentActivity implements OnMapReadyCallback {
         }).start();
     }
 
-    private void parseNearbyResponse(String jsonResponse) {
+    private void parseNearbyResponse(String jsonResponse,String type) {
         try {
             JSONObject jsonObject = new JSONObject(jsonResponse);
             JSONArray results = jsonObject.getJSONArray("results");
@@ -229,7 +230,7 @@ public class googleMap extends FragmentActivity implements OnMapReadyCallback {
                                 public boolean onMarkerClick(Marker marker) {
                                     String name = (String) marker.getTag();
                                     if (name != null) {
-                                        showAddToListDialog(name);
+                                        showAddToListDialog(name,type);
                                         return true;
                                     }
                                     return false;
@@ -249,27 +250,71 @@ public class googleMap extends FragmentActivity implements OnMapReadyCallback {
             e.printStackTrace();
         }
     }
-    private void showAddToListDialog(String name) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        Intent locationName = new Intent(this, PlanActivity.class);
-        builder.setTitle(name)
-                .setMessage("Do you want to add this location to your list?")
+//    private void showAddToListDialog(String name) {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        Intent locationName = new Intent(this, PlanActivity.class);
+//        builder.setTitle(name)
+//                .setMessage("Do you want to add this location to your list?")
+//
+//                .setPositiveButton("Add to Hotels", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        locationName.putExtra("locationName",name);
+//                        startActivity(locationName);
+//                    }
+//                })
+//
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
+//    }
 
-                .setPositiveButton("Add to Hotels", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        locationName.putExtra("locationName",name);
-                        startActivity(locationName);
-                    }
-                })
 
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        AlertDialog dialog = builder.create();
+    @SuppressLint("SetTextI18n")
+    private void showAddToListDialog(String name,String type) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.custom_dialog_layout);
+
+
+        GifImageView gifImageView = dialog.findViewById(R.id.gifImageView);
+        TextView textView = dialog.findViewById(R.id.textView);
+        TextView textView2 = dialog.findViewById(R.id.textView2);
+        Button btnCancel = dialog.findViewById(R.id.btn_cancel);
+        Button btnOkay = dialog.findViewById(R.id.btn_okay);
+
+        // Set values or perform any additional customization
+        textView.setText("Add Favorite " + name);
+        textView2.setText("Add this place to favorite list");
+
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle cancel button click
+                dialog.dismiss();
+            }
+        });
+
+        btnOkay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle okay button click
+                Intent locationName = new Intent(googleMap.this, placesActivity.class);
+                locationName.putExtra("locationName", name);
+                locationName.putExtra("locationType", type);
+                startActivity(locationName);
+
+                // Dismiss the dialog
+                dialog.dismiss();
+            }
+        });
+
+        // Show the custom dialog
         dialog.show();
     }
 

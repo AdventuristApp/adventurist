@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.annotation.SuppressLint;
@@ -31,10 +33,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adventurist.adventurist.Fragments.weatherapi;
+import com.adventurist.adventurist.adapter.placesAdapter;
+import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Nearest;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +52,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class adventureMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    List<Nearest> placesList = new ArrayList<>();
+    placesAdapter placesAdapter;
     EditText et;
     TextView tv;
     String url = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}";
@@ -56,7 +65,7 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
     Toolbar toolbar;
     Menu menu;
     TextView textView;
-    public static final String TAG_ADVENTURE = "profileActivity";
+    public static final String TAG_ADVENTURE = "adventuristActivity";
 
     private Dialog dialog;
     private ImageView ShowDialog;
@@ -67,8 +76,11 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adventure_main);
         setUpButtonsAndclickableImage();
-//        goToPlaneActivity2();
 
+
+
+//        goToPlaneActivity2();
+//        setRecyclerViewList();
         et = findViewById(R.id.et);
         tv = findViewById(R.id.tv);
 
@@ -190,14 +202,51 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
 
         return true;
     }
-
+//
+//    @SuppressLint("NotifyDataSetChanged")
+//    private void setRecyclerViewList() {
+//        RecyclerView recyclerView = findViewById(R.id.mainrecycleview);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(layoutManager);
+//        String locationName = getIntent().getStringExtra("locationName");
+//        // Initialize placesList and placesAdapter
+//        placesList = new ArrayList<>();
+//        placesAdapter = new placesAdapter(placesList);
+//
+//        // Set the adapter to the RecyclerView
+//        recyclerView.setAdapter(placesAdapter);
+//
+//        // Retrieve the value associated with the key
+//
+//
+//        // Read from DynamoDB
+//        Amplify.API.query(
+//                ModelQuery.list(places.class),
+//                success -> {
+//                    Log.i("mainActivity", "Read places recycleview2 successfully");
+//                    placesList.clear();
+//                    if (success.getData() != null) {
+//                        for (places databaseProduct : success.getData()) {
+//                            placesList.add(databaseProduct);
+//                            Log.d("placeName", "setUp placesRecyclerView() returned: " + databaseProduct.getPlace());
+//                        }
+//                        Log.d("mainActivity", "placesList size after retrieval: " + placesList.size());
+//                        runOnUiThread(() -> {
+//                            placesAdapter.notifyDataSetChanged();
+//                        });
+//                        Log.e("mainActivity", "Success response data is null");
+//                    }
+//                },
+//                failure -> Log.i("mainActivity", "Did not read places successfully"));
+//    }
     @Override
 
     protected void onResume() {
         super.onResume();
-
-
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -237,20 +286,20 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
     });
 
 
-        ImageView Hotels = findViewById(R.id.imageHotels);
+        ImageView Hotels = findViewById(R.id.imageMap);
         Hotels.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(adventureMainActivity.this, MainActivity.class);
+                Intent intent1 = new Intent(adventureMainActivity.this, googleMap.class);
                 startActivity(intent1);
             }
         });
 
-        ImageView Places = findViewById(R.id.GalleryImageView);
+        ImageView Places = findViewById(R.id.PlacesView);
         Places.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(adventureMainActivity.this, MainActivity.class);
+                Intent intent1 = new Intent(adventureMainActivity.this, placesActivity.class);
                 startActivity(intent1);
             }
         });
@@ -350,4 +399,4 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
     }
 
 
-}
+ }
