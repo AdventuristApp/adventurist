@@ -13,7 +13,9 @@
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "apiKeyConfig": {
+
               "apiKeyExpirationDate": "2024-02-17T15:14:10.356Z",
+
               "apiKeyExpirationDays": 60,
               "description": "test"
             },
@@ -86,23 +88,6 @@
       "mapStyle": "VectorEsriStreets",
       "providerPlugin": "awscloudformation",
       "service": "Map"
-    },
-    "placeIndex513b2ebc": {
-      "accessType": "AuthorizedAndGuestUsers",
-      "dataProvider": "HERE",
-      "dataSourceIntendedUse": "SingleUse",
-      "dependsOn": [
-        {
-          "attributes": [
-            "UserPoolId"
-          ],
-          "category": "auth",
-          "resourceName": "adventurist85a872e8"
-        }
-      ],
-      "isDefault": true,
-      "providerPlugin": "awscloudformation",
-      "service": "PlaceIndex"
     }
   },
   "storage": {
