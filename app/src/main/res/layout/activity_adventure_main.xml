@@ -282,7 +282,7 @@
 
 
                                     <ImageView
-                                        android:id="@+id/imageHotels"
+                                        android:id="@+id/imageMap"
                                         android:layout_width="41dp"
                                         android:layout_height="38dp"
                                         android:layout_marginStart="10dp"
@@ -293,7 +293,7 @@
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@drawable/flight" />
+                                        app:srcCompat="@drawable/map" />
 
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -332,7 +332,7 @@
 
 
                                     <ImageView
-                                        android:id="@+id/GalleryImageView"
+                                        android:id="@+id/PlacesView"
                                         android:layout_width="41dp"
                                         android:layout_height="38dp"
                                         android:layout_marginStart="10dp"
@@ -351,7 +351,7 @@
                                     android:id="@+id/textView4"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Trips"
+                                    android:text="Places"
                                     android:textAlignment="center" />
 
 
@@ -360,6 +360,7 @@
                     </LinearLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
                         android:layout_width="369dp"
                         android:layout_height="111dp"
                         android:layout_marginStart="16dp"
@@ -447,6 +448,19 @@
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mainrecycleview"
+                        android:layout_width="209dp"
+                        android:layout_height="137dp"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_marginEnd="150dp"
+                        android:layout_marginBottom="1dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
                     <!--                    <EditText-->
                     <!--                        android:id="@+id/et"-->

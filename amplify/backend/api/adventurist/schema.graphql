@@ -20,4 +20,23 @@ type Plan @model @auth(rules: [{ allow: public }]) {
   destination: String!
   budget: Float!
   userId: ID!
+
 }
+
+type Location @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  longitude: String!
+  latitude: String!
+  country: String
+  city: String
+}
+
+
+
+type Nearest @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  placeName: String!
+  userId: ID!
+  type : String
+}
+
