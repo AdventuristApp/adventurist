@@ -111,6 +111,35 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             }
         });
 
+        ImageView FavHotels = findViewById(R.id.FavHotels);
+        FavHotels.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(ProfileActivity.this, FavHotelsActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+        ImageView mytripsimage = findViewById(R.id.mytripsimage);
+        mytripsimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(ProfileActivity.this, PlanActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+
+
+        ImageView FavResimageView = findViewById(R.id.FavResimageView);
+        FavResimageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(ProfileActivity.this, FavRestaurantsActivity.class);
+                startActivity(intent1);
+            }
+        });
+
         TextView GalleryTEXT=findViewById(R.id.GallerytextView);
         GalleryTEXT.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -235,6 +235,7 @@ public class placesActivity extends AppCompatActivity {
 
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     public void setupRatingBox() {
         // Create the Dialog here
         final Dialog dialog = new Dialog(this);

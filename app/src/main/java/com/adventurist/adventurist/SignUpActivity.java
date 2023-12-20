@@ -33,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void setUpSignUpButton (){
         Button signUpSubmitButton = (Button) findViewById(R.id.signUpSubmitButton);
+
         signUpSubmitButton.setOnClickListener(v -> {
             String email = ((EditText)findViewById(R.id.signUpEmailEdit)).getText().toString();
             String nickName = ((EditText)findViewById(R.id.sginUpNickNameEdit)).getText().toString();
@@ -46,11 +47,11 @@ public class SignUpActivity extends AppCompatActivity {
                             .build(),
                     success -> {
                         Log.i(TAG, "Sign Up Succeeded :D" + success.toString());
-                        Intent goToVerifyIntent = new Intent(this, VerifyAccActivity.class);
+                        Intent goToVerifyIntent = new Intent(SignUpActivity.this, VerifyAccActivity.class);
                         goToVerifyIntent.putExtra(SIGN_UP_EMAIL_TAG, email);
                         Intent goTomainAdventure = new Intent(this, adventureMainActivity.class);
                         goToVerifyIntent.putExtra(SIGN_UP_Name_TAG, nickName);
-                        startActivity(goTomainAdventure);
+                        startActivity(goToVerifyIntent);
                     },
                     fail -> {
                         Log.i(TAG, "Sign Up fail with this email: " + email + "with a message" + fail.toString());

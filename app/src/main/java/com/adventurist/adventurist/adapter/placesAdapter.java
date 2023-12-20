@@ -64,14 +64,14 @@ public class placesAdapter extends RecyclerView.Adapter<placesAdapter.viewholder
         // Handle favorite hotels button click
         btnFavHotels.setOnClickListener(v -> {
             Intent intent = new Intent(callingActivity, FavHotelsActivity.class);
-            intent.putExtra("placeId", placesList.get(position).getId());
+            intent.putExtra("placeId", placesList.get(position).getPlaceName());
             callingActivity.startActivity(intent);
         });
 
         // Handle favorite restaurants button click
         btnFavRestaurants.setOnClickListener(v -> {
             Intent intent = new Intent(callingActivity, FavRestaurantsActivity.class);
-            intent.putExtra("placeId", placesList.get(position).getId());
+            intent.putExtra("placeId", placesList.get(position).getPlaceName());
             callingActivity.startActivity(intent);
         });
     }

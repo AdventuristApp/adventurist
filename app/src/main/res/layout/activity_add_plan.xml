@@ -49,8 +49,8 @@
                 android:id="@+id/daysText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Number Of Days"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:text="which day" />
 
             <EditText
                 android:id="@+id/addNumberOfDays"

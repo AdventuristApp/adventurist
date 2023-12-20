@@ -17,10 +17,14 @@
         android:id="@+id/googleSearchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:hint="@string/search_for_a_location"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#9E009688"
+        android:hint="@string/search_for_a_location" />
 
     <!-- Button for Hospital Search -->
     <Button

@@ -12,16 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.adventurist.adventurist.R;
 import com.amplifyframework.datastore.generated.model.FavResturants;
+import com.amplifyframework.datastore.generated.model.Resturant;
 
 import java.util.List;
 
 public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.ViewHolder> {
 
-    private List<FavResturants> restaurantsList;
+    private List<Resturant> restaurantsList;
     private Context callingActivity;
 
     // Constructor to initialize the data
-    public RestaurantsAdapter(List<FavResturants> restaurantsList, Context callingActivity) {
+    public RestaurantsAdapter(List<Resturant> restaurantsList, Context callingActivity) {
         this.restaurantsList = restaurantsList;
         this.callingActivity = callingActivity;
     }
@@ -41,7 +42,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
 
 
         TextView FavRestTextView=holder.itemView.findViewById(R.id.FavRestTextView);
-        FavResturants restaurant = restaurantsList.get(position);
+        Resturant restaurant = restaurantsList.get(position);
         FavRestTextView.setText(restaurant.getResturant());
         Log.d("restactivity", restaurant.getResturant() );
         Log.i("restAdapter"," in rest recycleview adapter");

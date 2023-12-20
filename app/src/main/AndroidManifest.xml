@@ -19,6 +19,9 @@
         tools:ignore="ObsoleteSdkInt"
         tools:targetApi="31">
         <activity
+            android:name=".FavHotelsActivty"
+            android:exported="false" />
+        <activity
             android:name=".placesActivity"
             android:exported="false" />
         <activity
@@ -27,7 +30,6 @@
         <activity
             android:name=".FavHotelsActivity"
             android:exported="false" />
-
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

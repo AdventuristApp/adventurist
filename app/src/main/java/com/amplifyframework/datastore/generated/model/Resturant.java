@@ -19,18 +19,18 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the FavHotels type in your schema. */
+/** This is an auto generated class representing the Resturant type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "FavHotels", authRules = {
+@ModelConfig(pluralName = "Resturants",  authRules = {
   @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
-public final class FavHotels implements Model {
-  public static final QueryField ID = field("FavHotels", "id");
-  public static final QueryField HOTEL = field("FavHotels", "Hotel");
-  public static final QueryField USER_ID = field("FavHotels", "userId");
-  public static final QueryField TYPE = field("FavHotels", "type");
+public final class Resturant implements Model {
+  public static final QueryField ID = field("Resturant", "id");
+  public static final QueryField RESTURANT = field("Resturant", "resturant");
+  public static final QueryField USER_ID = field("Resturant", "userId");
+  public static final QueryField TYPE = field("Resturant", "type");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String Hotel;
+  private final @ModelField(targetType="String", isRequired = true) String resturant;
   private final @ModelField(targetType="ID", isRequired = true) String userId;
   private final @ModelField(targetType="String") String type;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
@@ -45,8 +45,8 @@ public final class FavHotels implements Model {
       return id;
   }
   
-  public String getHotel() {
-      return Hotel;
+  public String getResturant() {
+      return resturant;
   }
   
   public String getUserId() {
@@ -65,9 +65,9 @@ public final class FavHotels implements Model {
       return updatedAt;
   }
   
-  private FavHotels(String id, String Hotel, String userId, String type) {
+  private Resturant(String id, String resturant, String userId, String type) {
     this.id = id;
-    this.Hotel = Hotel;
+    this.resturant = resturant;
     this.userId = userId;
     this.type = type;
   }
@@ -79,13 +79,13 @@ public final class FavHotels implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      FavHotels favHotels = (FavHotels) obj;
-      return ObjectsCompat.equals(getId(), favHotels.getId()) &&
-              ObjectsCompat.equals(getHotel(), favHotels.getHotel()) &&
-              ObjectsCompat.equals(getUserId(), favHotels.getUserId()) &&
-              ObjectsCompat.equals(getType(), favHotels.getType()) &&
-              ObjectsCompat.equals(getCreatedAt(), favHotels.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), favHotels.getUpdatedAt());
+      Resturant resturant = (Resturant) obj;
+      return ObjectsCompat.equals(getId(), resturant.getId()) &&
+              ObjectsCompat.equals(getResturant(), resturant.getResturant()) &&
+              ObjectsCompat.equals(getUserId(), resturant.getUserId()) &&
+              ObjectsCompat.equals(getType(), resturant.getType()) &&
+              ObjectsCompat.equals(getCreatedAt(), resturant.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), resturant.getUpdatedAt());
       }
   }
   
@@ -93,7 +93,7 @@ public final class FavHotels implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
-      .append(getHotel())
+      .append(getResturant())
       .append(getUserId())
       .append(getType())
       .append(getCreatedAt())
@@ -105,9 +105,9 @@ public final class FavHotels implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("FavHotels {")
+      .append("Resturant {")
       .append("id=" + String.valueOf(getId()) + ", ")
-      .append("Hotel=" + String.valueOf(getHotel()) + ", ")
+      .append("resturant=" + String.valueOf(getResturant()) + ", ")
       .append("userId=" + String.valueOf(getUserId()) + ", ")
       .append("type=" + String.valueOf(getType()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
@@ -116,7 +116,7 @@ public final class FavHotels implements Model {
       .toString();
   }
   
-  public static HotelStep builder() {
+  public static ResturantStep builder() {
       return new Builder();
   }
   
@@ -128,8 +128,8 @@ public final class FavHotels implements Model {
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
    */
-  public static FavHotels justId(String id) {
-    return new FavHotels(
+  public static Resturant justId(String id) {
+    return new Resturant(
       id,
       null,
       null,
@@ -139,12 +139,12 @@ public final class FavHotels implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      Hotel,
+      resturant,
       userId,
       type);
   }
-  public interface HotelStep {
-    UserIdStep hotel(String hotel);
+  public interface ResturantStep {
+    UserIdStep resturant(String resturant);
   }
   
 
@@ -154,43 +154,43 @@ public final class FavHotels implements Model {
   
 
   public interface BuildStep {
-    FavHotels build();
+    Resturant build();
     BuildStep id(String id);
     BuildStep type(String type);
   }
   
 
-  public static class Builder implements HotelStep, UserIdStep, BuildStep {
+  public static class Builder implements ResturantStep, UserIdStep, BuildStep {
     private String id;
-    private String Hotel;
+    private String resturant;
     private String userId;
     private String type;
     public Builder() {
       
     }
     
-    private Builder(String id, String Hotel, String userId, String type) {
+    private Builder(String id, String resturant, String userId, String type) {
       this.id = id;
-      this.Hotel = Hotel;
+      this.resturant = resturant;
       this.userId = userId;
       this.type = type;
     }
     
     @Override
-     public FavHotels build() {
+     public Resturant build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new FavHotels(
+        return new Resturant(
           id,
-          Hotel,
+          resturant,
           userId,
           type);
     }
     
     @Override
-     public UserIdStep hotel(String hotel) {
-        Objects.requireNonNull(hotel);
-        this.Hotel = hotel;
+     public UserIdStep resturant(String resturant) {
+        Objects.requireNonNull(resturant);
+        this.resturant = resturant;
         return this;
     }
     
@@ -219,15 +219,15 @@ public final class FavHotels implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String hotel, String userId, String type) {
-      super(id, Hotel, userId, type);
-      Objects.requireNonNull(Hotel);
+    private CopyOfBuilder(String id, String resturant, String userId, String type) {
+      super(id, resturant, userId, type);
+      Objects.requireNonNull(resturant);
       Objects.requireNonNull(userId);
     }
     
     @Override
-     public CopyOfBuilder hotel(String hotel) {
-      return (CopyOfBuilder) super.hotel(hotel);
+     public CopyOfBuilder resturant(String resturant) {
+      return (CopyOfBuilder) super.resturant(resturant);
     }
     
     @Override
@@ -243,5 +243,4 @@ public final class FavHotels implements Model {
   
 
 
-  
 }
