@@ -63,8 +63,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.28'
-
-
-
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
 
 }

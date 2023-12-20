@@ -1,19 +1,63 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="150dp"
-    android:layout_height="100dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     tools:context=".Fragments.PlanListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/planNameFragment"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="TextView" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="3dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#2050C2C9">
+<!--            this one : 203887BE-->
+<!--            or this : 2050C2C9-->
+
+            <TextView
+                android:id="@+id/planNameFragment"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/destinationFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                />
+
+            <ImageView
+                android:id="@+id/deletePlanButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_gravity="center"
+                android:background="@drawable/baseline_remove_circle_24"
+                android:text="Delete" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>
