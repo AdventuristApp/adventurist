@@ -418,97 +418,18 @@
                 app:srcCompat="@drawable/arc_3"
                 tools:ignore="ContentDescription,MissingConstraints" />
 
-            <ImageView
-                android:id="@+id/setting"
-                android:layout_width="56dp"
-                android:layout_height="47dp"
-                app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.954"
-                app:layout_constraintStart_toStartOf="@+id/toolbar2"
-                app:layout_constraintTop_toTopOf="@+id/toolbar2"
-                app:srcCompat="@drawable/setting" />
-
-            <!--    <ImageView-->
-            <!--        android:id="@+id/profileImage"-->
-            <!--        android:layout_width="111dp"-->
-            <!--        android:layout_height="79dp"-->
-            <!--        android:src="@drawable/profile"-->
-            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--        app:layout_constraintEnd_toEndOf="parent"-->
-            <!--        app:layout_constraintHorizontal_bias="0.01"-->
-            <!--        app:layout_constraintStart_toStartOf="parent"-->
-            <!--        app:layout_constraintTop_toBottomOf="@+id/toolbar2"-->
-            <!--        app:layout_constraintVertical_bias="0.136" />-->
+<!--            <ImageView-->
+<!--                android:id="@+id/setting"-->
+<!--                android:layout_width="56dp"-->
+<!--                android:layout_height="47dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/toolbar2"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.954"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/toolbar2"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/toolbar2"-->
+<!--                app:srcCompat="@drawable/setting" />-->
 
 
-            <!--    <TextView-->
-            <!--        android:id="@+id/Gallery"-->
-            <!--        android:layout_width="78dp"-->
-            <!--        android:layout_height="26dp"-->
-            <!--        android:fontFamily="cursive"-->
-            <!--        android:text="FavHotels"-->
-            <!--        android:textStyle="bold"-->
-            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--        app:layout_constraintEnd_toEndOf="parent"-->
-            <!--        app:layout_constraintHorizontal_bias="0.612"-->
-            <!--        app:layout_constraintStart_toStartOf="parent"-->
-            <!--        app:layout_constraintTop_toTopOf="parent"-->
-            <!--        app:layout_constraintVertical_bias="0.408" />-->
-
-            <!--    <TextView-->
-            <!--        android:id="@+id/FavHOTEL"-->
-            <!--        android:layout_width="42dp"-->
-            <!--        android:layout_height="22dp"-->
-            <!--        android:fontFamily="cursive"-->
-            <!--        android:text="Gallery"-->
-            <!--        android:textSize="16sp"-->
-            <!--        android:textStyle="bold"-->
-            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--        app:layout_constraintEnd_toEndOf="parent"-->
-            <!--        app:layout_constraintHorizontal_bias="0.094"-->
-            <!--        app:layout_constraintStart_toStartOf="parent"-->
-            <!--        app:layout_constraintTop_toTopOf="parent"-->
-            <!--        app:layout_constraintVertical_bias="0.406"-->
-            <!--        tools:ignore="MissingConstraints" />-->
-
-            <!--        <TextView-->
-            <!--            android:id="@+id/FavRES"-->
-            <!--            android:layout_width="85dp"-->
-            <!--            android:layout_height="30dp"-->
-            <!--            android:fontFamily="cursive"-->
-            <!--            android:text="FavResturants"-->
-            <!--            android:textStyle="bold"-->
-            <!--            app:layout_constraintEnd_toEndOf="parent"-->
-            <!--            app:layout_constraintHorizontal_bias="0.141"-->
-            <!--            app:layout_constraintStart_toStartOf="parent"-->
-            <!--            tools:layout_editor_absoluteY="34dp" />-->
-
-            <!--        <TextView-->
-            <!--            android:id="@+id/MyTrips"-->
-            <!--            android:layout_width="85dp"-->
-            <!--            android:layout_height="30dp"-->
-            <!--            android:fontFamily="cursive"-->
-            <!--            android:text="MyTrips"-->
-            <!--            android:textStyle="bold"-->
-            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--            app:layout_constraintEnd_toEndOf="parent"-->
-            <!--            app:layout_constraintHorizontal_bias="0.668"-->
-            <!--            app:layout_constraintStart_toStartOf="parent" />-->
-
-            <!--        <Button-->
-            <!--        android:id="@+id/EditProfile"-->
-            <!--        android:layout_width="wrap_content"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        android:backgroundTint="@color/blue"-->
-            <!--        android:text="Edit profile"-->
-            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--        app:layout_constraintEnd_toEndOf="parent"-->
-            <!--        app:layout_constraintHorizontal_bias="0.884"-->
-            <!--        app:layout_constraintStart_toStartOf="parent"-->
-            <!--        app:layout_constraintTop_toTopOf="@+id/toolbar2"-->
-            <!--        app:layout_constraintVertical_bias="0.153"-->
-            <!--        tools:ignore="TextContrastCheck" />-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

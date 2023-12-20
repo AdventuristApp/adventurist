@@ -38,3 +38,17 @@ type Nearest @model @auth(rules: [{ allow: public }]) {
   userId: ID!
   type : String
 }
+
+type FavResturants @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  Resturant: String!
+  userId: ID!
+  type : String
+}
+type FavHotels @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  Hotel: String!
+  userId: ID!
+  type : String
+}
+

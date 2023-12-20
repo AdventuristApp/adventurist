@@ -108,7 +108,7 @@ public class GalleryActivity extends AppCompatActivity implements NavigationView
 
 
         /*---------------------Hooks------------------------*/
-        drawerLayout = findViewById(R.id.drawer_layout4);
+        drawerLayout = findViewById(R.id.placesAcitity);
         navigationView = findViewById(R.id.nav_view4);
         textView = findViewById(R.id.textView);
         toolbar = findViewById(R.id.toolbar2);
@@ -383,8 +383,11 @@ public class GalleryActivity extends AppCompatActivity implements NavigationView
         if (itemId == R.id.nav_home) {
             Intent intent = new Intent(GalleryActivity.this, adventureMainActivity.class);
             startActivity(intent);
-        } else if (itemId == R.id.nav_Hotels) {
-            Intent intent = new Intent(GalleryActivity.this, ProfileActivity.class);
+        } else if (itemId == R.id.nav_Map) {
+            Intent intent = new Intent(GalleryActivity.this, googleMap.class);
+            startActivity(intent);
+        } else if (itemId == R.id.nav_places) {
+            Intent intent = new Intent(GalleryActivity.this, placesActivity.class);
             startActivity(intent);
         }
 

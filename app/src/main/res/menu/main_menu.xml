@@ -7,13 +7,13 @@
         android:icon="@drawable/baseline_home_24"
         android:title="Home" />
     <item
-        android:id="@+id/nav_xxx"
-        android:icon="@drawable/baseline_home_24"
-        android:title="xxxxx" />
+        android:id="@+id/nav_Map"
+        android:icon="@drawable/baseline_map_24"
+        android:title="Map" />
     <item
-        android:id="@+id/nav_Hotels"
-        android:icon="@drawable/hotel__2_"
-        android:title="Hotels" />
+        android:id="@+id/nav_places"
+        android:icon="@drawable/place"
+        android:title="Places" />
     <item
         android:id="@+id/nav_plane"
         android:icon="@drawable/airplane_ticket"

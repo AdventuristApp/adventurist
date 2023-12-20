@@ -1,30 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/placefragment"
-    android:layout_width="200dp"
-    android:layout_height="100dp"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:background="@color/buttontext"
     tools:context=".Fragments.placeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
 
-    <TextView
-        android:id="@+id/placeNameTextView"
-        android:layout_width="146dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginBottom="67dp"
-        android:text="@string/textview2"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="9dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
+        tools:cardCornerRadius="20dp"
+        tools:ignore="MissingConstraints">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/internal2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                tools:layout_editor_absoluteX="166dp"
+                tools:layout_editor_absoluteY="16dp">
+
+                <TextView
+                    android:id="@+id/placeNameTextView"
+                    android:layout_width="170dp"
+                    android:layout_height="47dp"
+                    android:layout_marginStart="41dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="34dp"
+                    android:layout_marginBottom="42dp"
+                    android:text="@string/textview2"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnFavRestaurants"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:id="@+id/btnFavRestaurants"
+                    android:layout_width="65dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="88dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/white"
+                    android:drawableRight="@drawable/fork"
+                    android:text="Restaurants"
+                    app:layout_constraintBottom_toTopOf="@+id/btnFavHotels"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/placeNameTextView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/btnFavHotels"
+                    android:layout_width="64dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="71dp"
+                    android:layout_marginBottom="19dp"
+                    android:backgroundTint="@color/white"
+                    android:drawableRight="@drawable/newhotel"
+                    android:text="Fav Hotels"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/placeNameTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/btnFavRestaurants"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/typePlace"
+                    android:layout_width="118dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="82dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="TextView"
+                    android:textColor="@color/buttontext"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnFavHotels"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/placeNameTextView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

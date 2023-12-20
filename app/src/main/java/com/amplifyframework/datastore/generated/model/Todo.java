@@ -205,6 +205,5 @@ public final class Todo implements Model {
   }
   
 
-  
-  
+
 }

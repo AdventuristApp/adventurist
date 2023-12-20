@@ -161,9 +161,13 @@ public class adventureMainActivity extends AppCompatActivity implements Navigati
         if (itemId == R.id.nav_home) {
             Intent intent = new Intent(adventureMainActivity.this, adventureMainActivity.class);
             startActivity(intent);
-        } else if (itemId == R.id.nav_Hotels) {
-            Intent intent = new Intent(adventureMainActivity.this, ProfileActivity.class);
+        } else if (itemId == R.id.nav_places) {
+            Intent intent = new Intent(adventureMainActivity.this, placesActivity.class);
             startActivity(intent);
+
+        } else if (itemId == R.id.nav_Map) {
+                Intent intent = new Intent(adventureMainActivity.this, googleMap.class);
+                startActivity(intent);
         } else if (itemId == R.id.nav_profile) {
             Intent intent = new Intent(adventureMainActivity.this, ProfileActivity.class);
             startActivity(intent);

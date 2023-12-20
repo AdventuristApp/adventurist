@@ -22,10 +22,10 @@
             android:name=".placesActivity"
             android:exported="false" />
         <activity
-            android:name=".Resturants"
+            android:name=".FavRestaurantsActivity"
             android:exported="false" />
         <activity
-            android:name=".Hotels"
+            android:name=".FavHotelsActivity"
             android:exported="false" />
 
         <!--
