@@ -13,11 +13,12 @@
         android:alpha="0.56"
         android:background="@color/plan_page" />
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         android:layout_above="@id/card_view"
         android:padding="28dp"
         tools:ignore="UseCompoundDrawables">
@@ -31,16 +32,42 @@
             android:textColor="@color/black"
             android:textSize="23sp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="28dp"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/traveler_girl"
+            android:layout_marginRight="50dp"/>
+
         <ImageView
             android:id="@+id/addPlan"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/addplan"
-            android:text="Add Plan"
-            android:layout_marginTop="20dp"/>
+            android:background="@drawable/plus_test"
+            android:text="Add Plan" />
+<!--        android:background="@drawable/addplan"-->
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/traveler_boy" />
+
+    </LinearLayout>
+
 
 
     </LinearLayout>
+
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -53,7 +80,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="480dp"
+            android:layout_height="450dp"
             android:orientation="vertical"
             android:padding="28dp">
 
