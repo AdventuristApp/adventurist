@@ -1,6 +1,5 @@
 package com.adventurist.adventurist;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
@@ -24,52 +23,70 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.adventurist.adventurist.adapter.placesAdapter;
+import com.adventurist.adventurist.adapter.HotelsAdapter;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Nearest;
+import com.amplifyframework.datastore.generated.model.FavHotels;
+import com.amplifyframework.datastore.generated.model.Hotel;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class placesActivity extends AppCompatActivity {
+public class FavHotelsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static final String TAG = "placesActivity";
+    public static final String TAG = "FavHotelsActivity";
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
     TextView textView;
-    private String targetPlaceId;
-    List<Nearest> placesList = new ArrayList<>();
-    placesAdapter placesAdapter;
-    private AuthUser authuser;
-    @SuppressLint({"SetTextI18n", "MissingInflatedId"})
+
+    private String targetHotelId;
+    List<Hotel> hotelsList = new ArrayList<>();
+    HotelsAdapter hotelsAdapter;
+    private AuthUser authUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_places);
+        setContentView(R.layout.activity_fav_hotels_activty);
 
-        authuser=Amplify.Auth.getCurrentUser();
+        authUser = Amplify.Auth.getCurrentUser();
+
+        // Get the intent that started this activity
+        Intent intent = getIntent();
+
+        if (intent.hasExtra("placeId")) {
+            // Retrieve the value associated with the key
+            String hotelName = intent.getStringExtra("placeId");
+
+            // Now you can use the hotelName as needed
+            // Move the saveHotelName call inside the condition
+            saveHotelName(hotelName);
+            setRecyclerViewList();
+        } else {
+            setRecyclerViewList();
+        }
+
+
 
 
         /*---------------------Hooks------------------------*/
-        drawerLayout = findViewById(R.id.placesAcitity);
-        navigationView = findViewById(R.id.nav_view5);
-        textView = findViewById(R.id.textView);
-        toolbar = findViewById(R.id.toolbar2);
+        drawerLayout = findViewById(R.id.FavHotels);
+        navigationView = findViewById(R.id.nav_view6);
+        textView = findViewById(R.id.textView10);
+        toolbar = findViewById(R.id.toolbar6);
         navigationView.bringToFront();
 
         ActionBarDrawerToggle toggle = new
                 ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this::onNavigationItemSelected);
+        navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
 
 
@@ -77,121 +94,105 @@ public class placesActivity extends AppCompatActivity {
         menu.findItem(R.id.nav_logout).setVisible(true);
         menu.findItem(R.id.nav_profile).setVisible(true);
 
-        //=============================
-
-
-        // Get the intent that started this activity
-        Intent intent = getIntent();
-
-        // Check if the intent has extra data with key "locationName"
-        if (intent.hasExtra("locationName")) {
-            // Retrieve the value associated with the key
-            String locationName = intent.getStringExtra("locationName");
-            String locationType = intent.getStringExtra("locationType");
-
-            // Now you can use the locationName as needed, for example, set it to a TextView
-//            TextView locationNameTextView = findViewById(R.id.locationNameTextView);
-//            locationNameTextView.setText("Location Name: " + locationName);
-
-            // Move the saveNamePlaces call inside the condition
-            savePlacesName(locationName,locationType);
-            setRecyclerViewList();
-        }
-        else {
-        setRecyclerViewList();
-        }
     }
 
-    private void savePlacesName(String name, String locationType) {
-        //add record in dynamoDB===============
-        Nearest newplace = Nearest.builder()
-                .placeName(name)
-                .userId(authuser.getUserId())
-                .type(locationType)
+    private void saveHotelName(String name) {
+        // Add record in DynamoDB
+        Hotel newHotel = Hotel.builder()
+                .hotel(name)
+                .userId(authUser.getUserId())
                 .build();
 
         Amplify.API.mutate(
-                ModelMutation.create(newplace),
+                ModelMutation.create(newHotel),
                 successResponse -> {
-                    Log.i(TAG, " placesActivity.onCreate(): made a a place add successfully");
-                    runOnUiThread(() -> Toast.makeText(placesActivity.this, "place Added Successfully", Toast.LENGTH_SHORT).show());
-                    Log.i(TAG, "Before  - targetPlaceId: " + targetPlaceId);
-                    targetPlaceId = newplace.getId();
-                    Log.i(TAG, "After  - targetPlaceId: " + targetPlaceId);
-                    ReadPlaces();
-
-
+                    Log.i(TAG, "FavHotelsActivity.onCreate(): Hotel added successfully");
+                    runOnUiThread(() -> Toast.makeText(FavHotelsActivity.this, "Hotel Added Successfully", Toast.LENGTH_SHORT).show());
+                    Log.i(TAG, "Before  - targetHotelId: " + targetHotelId);
+                    targetHotelId = newHotel.getId();
+                    Log.i(TAG, "After  - targetHotelId: " + targetHotelId);
+                    readHotels();
                 },
                 failureResponse -> {
-                    Log.e(TAG, "placesActivity.onCreate(): failed with this response" + failureResponse);
-                    Toast.makeText(this, "Failed to add places. Please try again.", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "FavHotelsActivity.onCreate(): Failed with this response" + failureResponse);
+                    Toast.makeText(this, "Failed to add hotel. Please try again.", Toast.LENGTH_SHORT).show();
                 }
-        );//=================
-        Snackbar.make(findViewById(R.id.placesAcitity), "place saved!", Snackbar.LENGTH_SHORT).show();
+        );
     }
-
 
     private void setRecyclerViewList() {
-        ReadPlaces();
+
+
+        // Set the RecyclerView layout manager
+        RecyclerView recyclerView = findViewById(R.id.HotelsRecycleview);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // Set the RecyclerView adapter
+        hotelsAdapter = new HotelsAdapter(hotelsList, this);
+        recyclerView.setAdapter(hotelsAdapter);
+
+        // Now, call readHotels to populate the data
+        readHotels();
     }
 
-    private void ReadPlaces() {
-        Amplify.API.query(
-                ModelQuery.list(Nearest.class, Nearest.USER_ID.eq(authuser.getUserId())),
-                success -> {
-                    placesList.clear();
-                    for (Nearest place : success.getData()) {
-                        placesList.add(place);
-                    }
 
-                    // Set the RecyclerView adapter after updating placesList
-                    runOnUiThread(() -> {
-                        RecyclerView recyclerView = findViewById(R.id.placesRecycleview);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-                        recyclerView.setLayoutManager(layoutManager);
-                        placesAdapter = new placesAdapter(placesList, this);
-                        recyclerView.setAdapter(placesAdapter);
-                        placesAdapter.notifyDataSetChanged();
-                    });
+
+    private void readHotels() {
+        Log.i(TAG, "Entering readHotels");
+        Amplify.API.query(
+                ModelQuery.list(Hotel.class, Hotel.USER_ID.eq(authUser.getUserId())),
+                success -> {
+                    Log.i(TAG, "Success data: " + success.getData());
+                    if (success.getData() != null) {
+                        hotelsList.clear();
+
+                        for (Hotel hotel : success.getData()) {
+                            Log.i(TAG, "INSIDE FOR LOOP" + hotelsList);
+                            hotelsList.add(hotel);
+                            Log.i(TAG, "ADD SUCCESSFULLY" + hotelsList);
+                        }
+                        runOnUiThread(() -> {
+//                            RecyclerView recyclerView = findViewById(R.id.recyclerViewHotels);
+//                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+//                            recyclerView.setLayoutManager(layoutManager);
+//                            hotelsAdapter = new HotelsAdapter(hotelsList, this);
+//                            recyclerView.setAdapter(hotelsAdapter);
+                            hotelsAdapter.notifyDataSetChanged();
+
+                            Log.i(TAG, "RecyclerView adapter set successfully");
+                        });
+                    }
                 },
                 fail -> {
-                    Toast.makeText(this, "Can't read from AWS", Toast.LENGTH_SHORT).show();
+                    // Handle the failure case
+                    Log.e(TAG, "Error querying hotels", fail);
+                    Toast.makeText(FavHotelsActivity.this, "Failed to query hotels. Please try again.", Toast.LENGTH_SHORT).show();
                 }
         );
     }
 
 
-    protected void onResume() {
-        super.onResume();
-    }
+
 
 
     @Override
-    public void onBackPressed(){
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else
-        {super.onBackPressed();
-        }
-    }
-
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         menu.findItem(R.id.nav_logout).setVisible(true);
         if (itemId == R.id.nav_home) {
-            Intent intent = new Intent(placesActivity.this, adventureMainActivity.class);
+            Intent intent = new Intent(FavHotelsActivity.this, adventureMainActivity.class);
             startActivity(intent);
         } else if (itemId == R.id.nav_Map) {
-            Intent intent = new Intent(placesActivity.this, googleMap.class);
+            Intent intent = new Intent(FavHotelsActivity.this, googleMap.class);
             startActivity(intent);
         } else if (itemId == R.id.nav_places) {
-            Intent intent = new Intent(placesActivity.this, placesActivity.class);
+            Intent intent = new Intent(FavHotelsActivity.this, placesActivity.class);
             startActivity(intent);
         }
 
         else if (itemId == R.id.nav_profile) {
-            Intent intent = new Intent(placesActivity.this, ProfileActivity.class);
+            Intent intent = new Intent(FavHotelsActivity.this, ProfileActivity.class);
             startActivity(intent);
         }
 
@@ -202,21 +203,21 @@ public class placesActivity extends AppCompatActivity {
             menu.findItem(R.id.nav_Gallery).setVisible(true);
 
             Amplify.Auth.signOut(()->{
-                        Log.i(TAG, "Log Out Succeeded :D");
+                        Log.i("Gallery_TAG", "Log Out Succeeded :D");
                         runOnUiThread(() -> {
-//                          ((TextView)findViewById(R.id.usernameTextView)).setText("");
+//                            ((TextView)findViewById(R.id.usernameTextView)).setText("");
                         });
                         Intent goToSignInIntent = new Intent(this, signInActivity.class);
                         startActivity(goToSignInIntent);
                     },
                     fail -> {
-                        Log.i(TAG, "Log Out failed");
+                        Log.i("Gallery_TAG", "Log Out failed");
                         runOnUiThread(() -> {
                             Toast.makeText(this, "Log Out failed", Toast.LENGTH_LONG);
                         });
                     });
         } else if (itemId == R.id.nav_Gallery) {
-            Intent intent = new Intent(placesActivity.this, GalleryActivity.class);
+            Intent intent = new Intent(FavHotelsActivity.this, GalleryActivity.class);
             startActivity(intent);}
 
         else if (itemId == R.id.nav_share) {
@@ -235,7 +236,6 @@ public class placesActivity extends AppCompatActivity {
 
 
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     public void setupRatingBox() {
         // Create the Dialog here
         final Dialog dialog = new Dialog(this);
@@ -267,11 +267,16 @@ public class placesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(placesActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FavHotelsActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
 
         dialog.show();
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

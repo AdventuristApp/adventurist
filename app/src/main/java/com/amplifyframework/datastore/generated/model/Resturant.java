@@ -19,18 +19,18 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the Nearest type in your schema. */
+/** This is an auto generated class representing the Resturant type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Nearests",  authRules = {
+@ModelConfig(pluralName = "Resturants",  authRules = {
   @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
-public final class Nearest implements Model {
-  public static final QueryField ID = field("Nearest", "id");
-  public static final QueryField PLACE_NAME = field("Nearest", "placeName");
-  public static final QueryField USER_ID = field("Nearest", "userId");
-  public static final QueryField TYPE = field("Nearest", "type");
+public final class Resturant implements Model {
+  public static final QueryField ID = field("Resturant", "id");
+  public static final QueryField RESTURANT = field("Resturant", "resturant");
+  public static final QueryField USER_ID = field("Resturant", "userId");
+  public static final QueryField TYPE = field("Resturant", "type");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String placeName;
+  private final @ModelField(targetType="String", isRequired = true) String resturant;
   private final @ModelField(targetType="ID", isRequired = true) String userId;
   private final @ModelField(targetType="String") String type;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
@@ -45,8 +45,8 @@ public final class Nearest implements Model {
       return id;
   }
   
-  public String getPlaceName() {
-      return placeName;
+  public String getResturant() {
+      return resturant;
   }
   
   public String getUserId() {
@@ -65,9 +65,9 @@ public final class Nearest implements Model {
       return updatedAt;
   }
   
-  private Nearest(String id, String placeName, String userId, String type) {
+  private Resturant(String id, String resturant, String userId, String type) {
     this.id = id;
-    this.placeName = placeName;
+    this.resturant = resturant;
     this.userId = userId;
     this.type = type;
   }
@@ -79,13 +79,13 @@ public final class Nearest implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      Nearest nearest = (Nearest) obj;
-      return ObjectsCompat.equals(getId(), nearest.getId()) &&
-              ObjectsCompat.equals(getPlaceName(), nearest.getPlaceName()) &&
-              ObjectsCompat.equals(getUserId(), nearest.getUserId()) &&
-              ObjectsCompat.equals(getType(), nearest.getType()) &&
-              ObjectsCompat.equals(getCreatedAt(), nearest.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), nearest.getUpdatedAt());
+      Resturant resturant = (Resturant) obj;
+      return ObjectsCompat.equals(getId(), resturant.getId()) &&
+              ObjectsCompat.equals(getResturant(), resturant.getResturant()) &&
+              ObjectsCompat.equals(getUserId(), resturant.getUserId()) &&
+              ObjectsCompat.equals(getType(), resturant.getType()) &&
+              ObjectsCompat.equals(getCreatedAt(), resturant.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), resturant.getUpdatedAt());
       }
   }
   
@@ -93,7 +93,7 @@ public final class Nearest implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
-      .append(getPlaceName())
+      .append(getResturant())
       .append(getUserId())
       .append(getType())
       .append(getCreatedAt())
@@ -105,9 +105,9 @@ public final class Nearest implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("Nearest {")
+      .append("Resturant {")
       .append("id=" + String.valueOf(getId()) + ", ")
-      .append("placeName=" + String.valueOf(getPlaceName()) + ", ")
+      .append("resturant=" + String.valueOf(getResturant()) + ", ")
       .append("userId=" + String.valueOf(getUserId()) + ", ")
       .append("type=" + String.valueOf(getType()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
@@ -116,7 +116,7 @@ public final class Nearest implements Model {
       .toString();
   }
   
-  public static PlaceNameStep builder() {
+  public static ResturantStep builder() {
       return new Builder();
   }
   
@@ -128,8 +128,8 @@ public final class Nearest implements Model {
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
    */
-  public static Nearest justId(String id) {
-    return new Nearest(
+  public static Resturant justId(String id) {
+    return new Resturant(
       id,
       null,
       null,
@@ -139,12 +139,12 @@ public final class Nearest implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      placeName,
+      resturant,
       userId,
       type);
   }
-  public interface PlaceNameStep {
-    UserIdStep placeName(String placeName);
+  public interface ResturantStep {
+    UserIdStep resturant(String resturant);
   }
   
 
@@ -154,43 +154,43 @@ public final class Nearest implements Model {
   
 
   public interface BuildStep {
-    Nearest build();
+    Resturant build();
     BuildStep id(String id);
     BuildStep type(String type);
   }
   
 
-  public static class Builder implements PlaceNameStep, UserIdStep, BuildStep {
+  public static class Builder implements ResturantStep, UserIdStep, BuildStep {
     private String id;
-    private String placeName;
+    private String resturant;
     private String userId;
     private String type;
     public Builder() {
       
     }
     
-    private Builder(String id, String placeName, String userId, String type) {
+    private Builder(String id, String resturant, String userId, String type) {
       this.id = id;
-      this.placeName = placeName;
+      this.resturant = resturant;
       this.userId = userId;
       this.type = type;
     }
     
     @Override
-     public Nearest build() {
+     public Resturant build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new Nearest(
+        return new Resturant(
           id,
-          placeName,
+          resturant,
           userId,
           type);
     }
     
     @Override
-     public UserIdStep placeName(String placeName) {
-        Objects.requireNonNull(placeName);
-        this.placeName = placeName;
+     public UserIdStep resturant(String resturant) {
+        Objects.requireNonNull(resturant);
+        this.resturant = resturant;
         return this;
     }
     
@@ -219,15 +219,15 @@ public final class Nearest implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String placeName, String userId, String type) {
-      super(id, placeName, userId, type);
-      Objects.requireNonNull(placeName);
+    private CopyOfBuilder(String id, String resturant, String userId, String type) {
+      super(id, resturant, userId, type);
+      Objects.requireNonNull(resturant);
       Objects.requireNonNull(userId);
     }
     
     @Override
-     public CopyOfBuilder placeName(String placeName) {
-      return (CopyOfBuilder) super.placeName(placeName);
+     public CopyOfBuilder resturant(String resturant) {
+      return (CopyOfBuilder) super.resturant(resturant);
     }
     
     @Override
@@ -243,5 +243,4 @@ public final class Nearest implements Model {
   
 
 
-  
 }

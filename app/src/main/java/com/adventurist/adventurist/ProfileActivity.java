@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        setupAlertcostumWindow();
+//        setupAlertcostumWindow();
 
         AuthUser authUser = Amplify.Auth.getCurrentUser();
         String username="";
@@ -111,6 +111,35 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             }
         });
 
+        ImageView FavHotels = findViewById(R.id.FavHotels);
+        FavHotels.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(ProfileActivity.this, FavHotelsActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+        ImageView mytripsimage = findViewById(R.id.mytripsimage);
+        mytripsimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(ProfileActivity.this, PlanActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+
+
+        ImageView FavResimageView = findViewById(R.id.FavResimageView);
+        FavResimageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(ProfileActivity.this, FavRestaurantsActivity.class);
+                startActivity(intent1);
+            }
+        });
+
         TextView GalleryTEXT=findViewById(R.id.GallerytextView);
         GalleryTEXT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,8 +166,12 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         if (itemId == R.id.nav_home) {
             Intent intent = new Intent(ProfileActivity.this, adventureMainActivity.class);
             startActivity(intent);
-        } else if (itemId == R.id.nav_Hotels) {
-            Intent intent = new Intent(ProfileActivity.this, ProfileActivity.class);
+
+        } else if (itemId == R.id.nav_Map) {
+            Intent intent = new Intent(ProfileActivity.this, googleMap.class);
+            startActivity(intent);
+        } else if (itemId == R.id.nav_places) {
+            Intent intent = new Intent(ProfileActivity.this, placesActivity.class);
             startActivity(intent);
         }
 
@@ -187,54 +220,54 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
 
 
-    public void setupAlertcostumWindow(){
-        ShowDialog = findViewById(R.id.setting);
+//    public void setupAlertcostumWindow(){
+//        ShowDialog = findViewById(R.id.setting);
+//
+//        //Create the Dialog here
+//        dialog = new Dialog(this);
+//        dialog.setContentView(R.layout.custom_dialog_layout);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.elements));
+//        }
+//        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        dialog.setCancelable(false); //Optional
+//        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
+//
+//        Button Okay = dialog.findViewById(R.id.btn_okay);
+//        Button Cancel = dialog.findViewById(R.id.btn_cancel);
+//
+//        Okay.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent goToSignInIntent = new Intent(ProfileActivity.this, signInActivity.class);
+//                startActivity(goToSignInIntent);
+//
+//                Toast.makeText(ProfileActivity.this, "Okay", Toast.LENGTH_SHORT).show();
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        Cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Toast.makeText(ProfileActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+//                dialog.dismiss();
+//            }
+//        });
+//
+//
+//        ShowDialog.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                dialog.show(); // Showing the dialog here
+//            }
+//        });
 
-        //Create the Dialog here
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.custom_dialog_layout);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.elements));
-        }
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setCancelable(false); //Optional
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
-
-        Button Okay = dialog.findViewById(R.id.btn_okay);
-        Button Cancel = dialog.findViewById(R.id.btn_cancel);
-
-        Okay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent goToSignInIntent = new Intent(ProfileActivity.this, signInActivity.class);
-                startActivity(goToSignInIntent);
-
-                Toast.makeText(ProfileActivity.this, "Okay", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
-
-        Cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(ProfileActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
 
 
-        ShowDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dialog.show(); // Showing the dialog here
-            }
-        });
-
-
-    }
     public void setupRatingBox() {
         // Create the Dialog here
         final Dialog dialog = new Dialog(this);
